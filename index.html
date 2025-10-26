@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float Creator V3.29 - 材料组合计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="project-main">
+        <div id="app-container">
+            <div class="tab">
+                <div class="tab-left">
+                    <button class="tablinks active" onclick="openTab('floatCombosDiv')" style="background-color: #2563eb;">
+                        🎯 <span data-i18n="mainTab">材料组合计算器</span>
+                    </button>
+                </div>
+                <div class="tab-right">
+                    <button class="language-switcher" onclick="toggleLanguage()">
+                        🌐 <span data-i18n="language">English</span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="floatCombosDiv" class="tabcontent" style="display: block;">
+                <div class="width100">
+                    <div class="centerFlex">
+                        <h1 style="color: #60a5fa; margin-bottom: 20px;">
+                            🎮 <span data-i18n="title">CSGO 材料组合计算器</span>
+                            <span style="font-size: 14px; color: #90caf9;">(qq:2469344014、1604995891) 抖音：炮车磨损定制</span>
+                        </h1>
+                    </div>
+                </div>
+                
+                <div class="fc-global-controls">
+                    <div class="control-group">
+    <label data-i18n="materialsPerGroup">每组材料数量:</label>
+    <input type="number" id="globalInputCount" min="1" max="30" value="15" onchange="updateAllMaterialGroups()">
+    <button onclick="addMaterialGroup()">➕ <span data-i18n="addGroup">添加材料组</span></button>
+    <!-- 移除删除材料组按钮 -->
+    <button onclick="calculateAllPercentages()" class="btn-calculate">📊 <span data-i18n="calculateAll">计算所有百分比</span></button>
+</div>
+                    
+                    <div class="combination-controls">
+                        <div class="control-row">
+                            <div class="control-item">
+                                <label>🎯 <span data-i18n="combinationCount">合成材料数量:</span></label>
+                                <select id="combinationCount" onchange="updateCombinationUI()">
+                                    <option value="5">5 <span data-i18n="materials">个材料</span></option>
+                                    <option value="10" selected>10 <span data-i18n="materials">个材料</span></option>
+                                </select>
+                            </div>
+                            <div class="control-item">
+                                <label>📏 <span data-i18n="productMinWear">产物最小磨损:</span></label>
+                                <input type="number" id="productMinWear" min="0" max="1" step="0.0000000001" value="0.0000000000">
+                            </div>
+                            <div class="control-item">
+                                <label>📏 <span data-i18n="productMaxWear">产物最大磨损:</span></label>
+                                <input type="number" id="productMaxWear" min="0" max="1" step="0.0000000001" value="1.0000000000">
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-item">
+                                <label>🎯 <span data-i18n="targetProductWear">期望产物磨损:</span></label>
+                                <input type="number" id="targetProductWear" min="0" max="1" step="0.0000000001" value="0.5000000000" onchange="calculateRequiredPercentage()">
+                            </div>
+                            <div class="control-item">
+                                <label>🔍 <span data-i18n="significantDigits">有效位数:</span></label>
+                                <input type="number" id="significantDigits" min="1" max="10" value="8">
+                                <span class="hint">(<span data-i18n="decimalPlaces">小数点后位数</span>)</span>
+                            </div>
+                            <div class="control-item">
+                                <button onclick="findCombinations()" class="btn-search">🚀 <span data-i18n="startSearch">开始搜索组合</span></button>
+                                <button onclick="stopSearch()" class="btn-stop">⏹️ <span data-i18n="stopSearch">停止搜索</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="percentage-check" id="percentageCheck" style="display: none;">
+                        <div class="percentage-check-row">
+                            <div class="percentage-check-item">
+                                <label data-i18n="requiredPercentage">所需磨损百分比:</label>
+                                <span id="requiredPercentageValue">0.0000</span>
+                            </div>
+                            <div class="percentage-check-item">
+                                <label data-i18n="averagePercentage">材料平均百分比:</label>
+                                <span id="averagePercentageValue">0.0000</span>
+                            </div>
+                            <div class="percentage-check-item">
+                                <label data-i18n="percentageDifference">百分比差距:</label>
+                                <span id="percentageDifferenceValue">0.0000</span>
+                            </div>
+                            <button onclick="checkPercentageMatch()" class="btn-check">📊 <span data-i18n="checkMatch">检查匹配度</span></button>
+                        </div>
+                        <div class="percentage-suggestion" id="percentageSuggestion">
+                            <span data-i18n="suggestionHint">点击"检查匹配度"查看建议</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="fcMoreFloatsDiv" class="material-groups-container"></div>
+                
+                <div id="searchResults" class="search-results-container" style="display: none;">
+                    <div class="results-header">
+                        <h3>🎯 <span data-i18n="foundCombinations">找到的组合结果</span></h3>
+                        <div class="results-info">
+                            <span id="resultsCount" style="color: #90caf9; font-weight: bold;" data-i18n="foundCount">已找到 0 个组合</span>
+                            <button onclick="clearResults()" class="btn-clear">🗑️ <span data-i18n="clearResults">清空结果</span></button>
+                        </div>
+                    </div>
+                    <div id="resultsList" class="results-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="usage-history-toggle" onclick="toggleUsageHistory()">📋 <span data-i18n="usageHistory">使用记录</span></div>
+        <div class="usage-history" id="usageHistory">
+            <div class="usage-history-header">
+                <span class="usage-history-title">📋 <span data-i18n="usageHistory">组合使用记录</span></span>
+                <button class="usage-history-clear" onclick="clearUsageHistory()" data-i18n="clear">清空</button>
+            </div>
+            <div id="usageHistoryList"><div class="usage-history-item" data-i18n="noHistory">暂无使用记录</div></div>
+        </div>
+    </main>
+
+    <script src="modules/ieee754.js"></script>
+    <script src="modules/language.js"></script>
+    <script src="modules/materialGroups.js"></script>
+    <script src="modules/combinationSearch.js"></script>
+    <script src="modules/usageHistory.js"></script>
+    <script src="modules/percentageCheck.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
