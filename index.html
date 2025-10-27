@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Float Creator V3.3 - 材料组合计算器</title>
+    <title>Float Creator V3.29 - 材料组合计算器</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles_ten.css">
 </head>
 <body>
     <main class="project-main">
@@ -14,7 +13,10 @@
             <div class="tab">
                 <div class="tab-left">
                     <button class="tablinks active" onclick="openTab('floatCombosDiv')" style="background-color: #2563eb;">
-                        🎯 <span data-i18n="mainTab">材料组合计算器</span>
+                        🎯 <span data-i18n="mainTab">特殊磨损材料组合生成器</span>
+                    </button>
+                    <button class="tablinks" onclick="openTab('tenComboDiv')">
+                        🔢 10合计算器
                     </button>
                 </div>
                 <div class="tab-right">
@@ -24,25 +26,27 @@
                 </div>
             </div>
 
+            <!-- 特殊磨损材料组合生成器 -->
             <div id="floatCombosDiv" class="tabcontent" style="display: block;">
-                <div class="width100">
+                <div class="width100">  
                     <div class="centerFlex">
                         <h1 style="color: #60a5fa; margin-bottom: 20px;">
-                            🎮 <span data-i18n="title">CSGO 材料组合计算器</span>
-                            <span style="font-size: 14px; color: #90caf9;">（测试版，开炉前请先用buff汰换检测是否一致，不一致则及时联系）(qq:2469344014、1604995891) 抖音：炮车磨损定制</span>
-                            
+                            🎮 <span data-i18n="title">CSGO 材料组合计算器（测试版）</span><br>
+                            <a style="color: #006bf7; margin-bottom: 20px;font-size: 16px;" href="https://www.douyin.com/user/MS4wLjABAAAALbMbVJqHi7miSBkMlThTAPuJiqYGuVTGR7FXLXi7lyCOWJZMGmT5nvtxKsyP1fso?previous_page=app_code_link"">抖音：炮车本车</a>
+                          &nbsp&nbsp  <a style="font-size: 16px; color: #c42e35;" href="https://item.taobao.com/item.htm?abbucket=3&id=745853484899&mi_id=00002Z4vAnwFgG6aHCrJrvAUa26URjCcYEvp9f9U94jyNEU&ns=1&priceTId=2147886d17615595272208719e1084&skuId=5147328373473&spm=a21n57.1.hoverItem.2&utparam=%7B%22aplus_abtest%22%3A%22cbab26a0f77a16d66cbd4e0d7bc0c9d0%22%7D&xxc=taobaoSearch">淘宝：炮车电玩小店 </a>   
+                           &nbsp &nbsp&nbsp<a   style="color: #f02189d8; margin-bottom: 20px;font-size: 16px;" href="https://space.bilibili.com/668987788?spm_id_from=333.1007.0.0">b站：炮车本车</a>
                         </h1>
                     </div>
+                    <span style="color: #60a5fa; margin-bottom: 20px;"> 联系qq群：1604995891</span>
                 </div>
                 
                 <div class="fc-global-controls">
                     <div class="control-group">
-    <label data-i18n="materialsPerGroup">每组材料数量:</label>
-    <input type="number" id="globalInputCount" min="1" max="30" value="15" onchange="updateAllMaterialGroups()">
-    <button onclick="addMaterialGroup()">➕ <span data-i18n="addGroup">添加材料组</span></button>
-    <!-- 移除删除材料组按钮 -->
-    <button onclick="calculateAllPercentages()" class="btn-calculate">📊 <span data-i18n="calculateAll">计算所有百分比</span></button>
-</div>
+                        <label data-i18n="materialsPerGroup">每组材料数量:</label>
+                        <input type="number" id="globalInputCount" min="1" max="30" value="15" onchange="updateAllMaterialGroups()">
+                        <button onclick="addMaterialGroup()">➕ <span data-i18n="addGroup">添加材料组</span></button>
+                        <button onclick="calculateAllPercentages()" class="btn-calculate">📊 <span data-i18n="calculateAll">计算所有百分比</span></button>
+                    </div>
                     
                     <div class="combination-controls">
                         <div class="control-row">
@@ -114,6 +118,67 @@
                     <div id="resultsList" class="results-list"></div>
                 </div>
             </div>
+
+            <!-- 10合计算器 -->
+            <div id="tenComboDiv" class="tabcontent">
+                <div class="width100">
+                    <div class="centerFlex">
+                        <h1 style="color: #60a5fa; margin-bottom: 20px; font-size: 22px;">
+                            🔢 <span data-i18n="tenComboTitle">10合磨损计算器</span>
+                        </h1>
+                    </div>
+                </div>
+                
+                <div class="ten-combo-container">
+                    <!-- 左侧：材料输入区域 -->
+                    <div class="combo-inputs-section">
+                        <h3 data-i18n="inputMaterials">📥 输入材料磨损</h3>
+                        
+                        <!-- 一键填充区域 -->
+                        <div class="bulk-fill-section">
+                            <div class="bulk-fill-controls">
+                                <span class="bulk-fill-label" data-i18n="bulkFill">一键填充:</span>
+                                <input type="text" class="bulk-fill-input" id="tenBulkFillInput" 
+                                       placeholder="输入逗号分隔的磨损值，如: 0.12, 0.34, 0.56...">
+                                <button class="bulk-fill-btn" onclick="bulkFillTenMaterials()">
+                                    🚀 <span data-i18n="fillMaterials">填充材料</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="material-inputs-grid-ten" id="tenMaterialInputs">
+                            <!-- 10个材料输入框将通过JS动态生成 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：控制区域 -->
+                    <div class="combo-controls-section">
+                        <div class="product-wear-controls">
+                            <h3 data-i18n="productSettings">🎯 产物设置</h3>
+                            
+                            <div class="product-control-item">
+                                <label data-i18n="productMin">最小磨损:</label>
+                                <input type="number" id="tenProductMinWear" min="0" max="1" step="0.0000001" value="0.0000000" class="product-short-input">
+                            </div>
+                            
+                            <div class="product-control-item">
+                                <label data-i18n="productMax">最大磨损:</label>
+                                <input type="number" id="tenProductMaxWear" min="0" max="1" step="0.0000001" value="1.0000000" class="product-short-input">
+                            </div>
+                            
+                            <button class="btn-calculate-ten" onclick="calculateTenCombo()">
+                                🧮 <span data-i18n="calculateProduct">计算产物磨损</span>
+                            </button>
+                            
+                            <div class="result-section" id="tenResultSection" style="display: none;">
+                                <h4 data-i18n="calculationResults">📊 计算结果</h4>
+                                <div class="result-output" id="tenResultOutput"></div>
+                                <div class="detailed-results" id="tenDetailedResults"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="usage-history-toggle" onclick="toggleUsageHistory()">📋 <span data-i18n="usageHistory">使用记录</span></div>
@@ -126,12 +191,13 @@
         </div>
     </main>
 
-<script src="modules/ieee754.js"></script>
+    <script src="modules/ieee754.js"></script>
     <script src="modules/language.js"></script>
     <script src="modules/materialGroups.js"></script>
     <script src="modules/combinationSearch.js"></script>
     <script src="modules/usageHistory.js"></script>
     <script src="modules/percentageCheck.js"></script>
+    <script src="modules/tenComboCalculator.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
