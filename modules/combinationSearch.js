@@ -1,1 +1,545 @@
-(function(_0x4729ad,_0x849c1d){const _0x4fc2a5=_0x3eaf,_0x47b5a7=_0x4729ad();while(!![]){try{const _0x24cdd3=-parseInt(_0x4fc2a5(0x222))/0x1+parseInt(_0x4fc2a5(0x246))/0x2+parseInt(_0x4fc2a5(0x23a))/0x3+parseInt(_0x4fc2a5(0x1de))/0x4*(-parseInt(_0x4fc2a5(0x1fd))/0x5)+-parseInt(_0x4fc2a5(0x216))/0x6*(parseInt(_0x4fc2a5(0x1da))/0x7)+-parseInt(_0x4fc2a5(0x242))/0x8*(parseInt(_0x4fc2a5(0x1df))/0x9)+parseInt(_0x4fc2a5(0x217))/0xa*(parseInt(_0x4fc2a5(0x1eb))/0xb);if(_0x24cdd3===_0x849c1d)break;else _0x47b5a7['push'](_0x47b5a7['shift']());}catch(_0x3b8b3a){_0x47b5a7['push'](_0x47b5a7['shift']());}}}(_0x47e9,0xbaa0c));let isSearching=![],foundCombinations=[],currentSearchId=null;const MAX_RESULTS=0x64,BATCH_SIZE=0x2710;let cachedPercentages=[],cachedWearRange=0x0;function findCombinations(){const _0x338332=_0x3eaf;if(isSearching){alert(_0x338332(0x1d4));return;}clearResults();const _0x1ee89e=parseInt(document['getElementById']('combinationCount')[_0x338332(0x1d9)]),_0x9455ea=parseFloat(document['getElementById'](_0x338332(0x249))['value'])||0x0,_0x5b957e=parseFloat(document[_0x338332(0x226)](_0x338332(0x20a))[_0x338332(0x1d9)])||0x1,_0x3c1d09=parseFloat(document[_0x338332(0x226)]('targetProductWear')[_0x338332(0x1d9)]),_0x37101d=parseInt(document[_0x338332(0x226)](_0x338332(0x1f8))[_0x338332(0x1d9)]);if(_0x9455ea>=_0x5b957e){alert(_0x338332(0x1d6));return;}if(_0x3c1d09<_0x9455ea||_0x3c1d09>_0x5b957e){alert(_0x338332(0x1ee));return;}const _0xc5f275=getAllAvailablePercentages();if(_0xc5f275[_0x338332(0x238)]<_0x1ee89e){alert('可用材料数量不足！需要\x20'+_0x1ee89e+_0x338332(0x20b)+_0xc5f275[_0x338332(0x238)]+'\x20个');return;}isSearching=!![],foundCombinations=[],currentSearchId=Date[_0x338332(0x215)](),document[_0x338332(0x226)]('searchResults')[_0x338332(0x243)]['display']=_0x338332(0x21a),updateResultsCount(),document[_0x338332(0x219)]('.btn-search')[_0x338332(0x1f5)]=!![],cachedPercentages=_0xc5f275,console[_0x338332(0x1e2)](_0x338332(0x223)+_0xc5f275['length']+_0x338332(0x239)+_0x1ee89e+'\x20个'),setTimeout(()=>{performOptimizedCombinationSearch(_0xc5f275,_0x1ee89e,_0x9455ea,_0x5b957e,_0x3c1d09,_0x37101d,currentSearchId);},0x64);}function _0x47e9(){const _0x7e13b1=['.fc-min-wear','productMaxWear','\x20个，当前只有\x20','resultsList','\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22result-wear\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20🎯\x20产物磨损:\x20','\x20combinations','#2196f3','dataset','linear-gradient(135deg,\x20rgba(76,\x20175,\x2080,\x200.3),\x20rgba(76,\x20175,\x2080,\x200.1))','borderColor','stopPropagation','remove','now','167682enioPi','90QenCcg','linear-gradient(135deg,\x20rgba(33,\x20150,\x20243,\x200.4),\x20rgba(33,\x20150,\x20243,\x200.2))','querySelector','block','percentage-highlight','toLocaleString','#ff9800','splice','insertBefore','.results-header','.btn-search','1420560fZslSZ','开始优化搜索:\x20','forEach','next','getElementById','✅\x20成功移除\x20','.material-group','%\x20(','🔍\x20搜索进度:\x20','done','transform','zh-CN','textContent','translateY(0)','add','formatPrecise','toFixed','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22result-average\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📊\x20平均百分比:\x20','materialGroup_','...','Found\x20','.result-item','length','\x20个材料中选取\x20','1781661OqHmjp','ensureFloat32','width','\x20个可用材料','appendChild','groupId','map','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22result-materials\x22\x20title=\x22','312gpORFm','style','result_','material-highlight','850218EjDVUe','materials','.progress-fill','productMinWear','isMatchWithConformingDigits','0.0000000000','linear-gradient(135deg,\x20rgba(76,\x20175,\x2080,\x200.4),\x20rgba(76,\x20175,\x2080,\x200.2))','averagePercent','substring','all\x200.5s\x20ease','search-progress','color','搜索正在进行中，请等待完成或停止当前搜索','background','产物最大磨损必须大于最小磨损！','className','\x20个组合，找到\x20','value','98QSEurA','divide','.progress-text','fill','4495208AlwPZW','13941nLXTsU','classList','createElement','log','.material-input','#4caf50','.result-item.selected','🎯\x20确定要使用这组材料吗？\x0a使用后\x20','div','innerHTML','inputIndex','querySelectorAll','3350677XLFkBx','rgba(244,\x2067,\x2054,\x200.3)','.fc-max-wear','期望产物磨损必须在产物磨损范围内！','\x20个材料将从输入框中移除。','display','searchProgress','\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22result-actions\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20class=\x22btn-use\x22\x20onclick=\x22useCombination(','selected','onclick','disabled','multiply','优化搜索开始:\x20总共\x20','significantDigits','✅\x20搜索完成！检查了\x20','\x20种组合','nextSibling','productWear','5qoIwUN','getConformingDigits','\x20+\x20','\x20个符合条件的结果','.material-highlight,\x20.percentage-highlight','subtract','concat','.percentage-display','.btn-use','已找到\x20','join','opacity'];_0x47e9=function(){return _0x7e13b1;};return _0x47e9();}function performOptimizedCombinationSearch(_0x30b227,_0x2e8140,_0x3d3c89,_0x94edae,_0x3e8287,_0x561960,_0x1b9922){const _0x176eab=_0x3eaf,_0x5d686f=combinations(_0x30b227[_0x176eab(0x238)],_0x2e8140);let _0x5be1d0=0x0,_0x3ab4af=[];console[_0x176eab(0x1e2)](_0x176eab(0x1f7)+_0x5d686f[_0x176eab(0x21c)]()+_0x176eab(0x1fa));const _0x4f8647=IEEE754Float32[_0x176eab(0x23b)](IEEE754Float32['subtract'](_0x94edae,_0x3d3c89)),_0x23151a=IEEE754Float32[_0x176eab(0x23b)](_0x3e8287),_0x3896fb=IEEE754Float32[_0x176eab(0x23b)](_0x3d3c89);cachedWearRange=_0x4f8647,createProgressBar();function*_0x80fb9f(_0x4afaa6,_0xd083c1){const _0x1d8cf4=_0x176eab,_0x5c9cc6=_0x4afaa6[_0x1d8cf4(0x238)],_0x507ed6=Array(_0xd083c1)[_0x1d8cf4(0x1dd)](0x0)[_0x1d8cf4(0x240)]((_0x45166d,_0x1237cb)=>_0x1237cb);yield _0x507ed6['map'](_0x5a43ca=>_0x4afaa6[_0x5a43ca]);while(!![]){let _0x3fe50e=_0xd083c1-0x1;while(_0x3fe50e>=0x0&&_0x507ed6[_0x3fe50e]===_0x5c9cc6-_0xd083c1+_0x3fe50e){_0x3fe50e--;}if(_0x3fe50e<0x0)break;_0x507ed6[_0x3fe50e]++;for(let _0x21448b=_0x3fe50e+0x1;_0x21448b<_0xd083c1;_0x21448b++){_0x507ed6[_0x21448b]=_0x507ed6[_0x21448b-0x1]+0x1;}yield _0x507ed6[_0x1d8cf4(0x240)](_0x3dabab=>_0x4afaa6[_0x3dabab]);}}function _0x3cfa13(_0x3ca905){const _0x231eaa=_0x176eab,_0x33acda=[];for(const _0x1104af of _0x3ca905){if(!isSearching||_0x1b9922!==currentSearchId)return[];_0x5be1d0++;let _0x39e9a0=IEEE754Float32[_0x231eaa(0x23b)](0x0);for(const _0x2f565a of _0x1104af){_0x39e9a0=IEEE754Float32[_0x231eaa(0x230)](_0x39e9a0,_0x2f565a[_0x231eaa(0x1d9)]);}const _0x18572e=IEEE754Float32['divide'](_0x39e9a0,_0x2e8140),_0x273060=IEEE754Float32[_0x231eaa(0x230)](IEEE754Float32[_0x231eaa(0x1f6)](_0x18572e,_0x4f8647),_0x3896fb);if(IEEE754Float32[_0x231eaa(0x24a)](_0x273060,_0x23151a,_0x561960)){_0x33acda['push']({'materials':_0x1104af,'productWear':_0x273060,'averagePercent':_0x18572e,'debug':{'actual':_0x273060,'target':_0x23151a,'conformingActual':IEEE754Float32[_0x231eaa(0x1fe)](_0x273060,_0x561960),'conformingTarget':IEEE754Float32['getConformingDigits'](_0x23151a,_0x561960)}});if(foundCombinations[_0x231eaa(0x238)]+_0x33acda[_0x231eaa(0x238)]>=MAX_RESULTS)return _0x33acda;}}return _0x33acda;}function _0xfd4009(){const _0x42f53d=_0x80fb9f(_0x30b227,_0x2e8140);let _0x15e751=[];function _0x5e3c59(){const _0x3d4f41=_0x3eaf;if(!isSearching||_0x1b9922!==currentSearchId){_0x1a18ba();return;}_0x15e751=[];for(let _0x18f48c=0x0;_0x18f48c<BATCH_SIZE;_0x18f48c++){const _0x19c901=_0x42f53d[_0x3d4f41(0x225)]();if(_0x19c901[_0x3d4f41(0x22b)])break;_0x15e751['push'](_0x19c901[_0x3d4f41(0x1d9)]);}if(_0x15e751['length']===0x0){_0x1a18ba();return;}const _0x4f6473=_0x3cfa13(_0x15e751);_0x3ab4af=_0x3ab4af[_0x3d4f41(0x203)](_0x4f6473);(_0x4f6473['length']>0x0||_0x5be1d0%0x2710===0x0)&&(_0x1fcc77(_0x4f6473),_0x4f6473[_0x3d4f41(0x238)]=0x0);updateProgress(_0x5be1d0,_0x5d686f);if(foundCombinations[_0x3d4f41(0x238)]>=MAX_RESULTS){_0x1a18ba();return;}setTimeout(_0x5e3c59,0x0);}_0x5e3c59();}function _0x1fcc77(_0x23b7b4){const _0xf017da=_0x176eab;if(_0x23b7b4[_0xf017da(0x238)]===0x0)return;foundCombinations=foundCombinations[_0xf017da(0x203)](_0x23b7b4),_0x23b7b4[_0xf017da(0x224)](_0x37eba9=>{addResultToUI(_0x37eba9);}),updateResultsCount();}function _0x1a18ba(){const _0x757025=_0x176eab;if(!isSearching||_0x1b9922!==currentSearchId)return;isSearching=![],document['querySelector'](_0x757025(0x221))[_0x757025(0x1f5)]=![],removeProgressBar();const _0x3dde49=_0x5be1d0===_0x5d686f?_0x757025(0x1f9)+_0x5be1d0['toLocaleString']()+_0x757025(0x1d8)+foundCombinations['length']+'\x20个符合条件的结果':'⏹️\x20搜索完成！检查了\x20'+_0x5be1d0[_0x757025(0x21c)]()+_0x757025(0x1d8)+foundCombinations['length']+_0x757025(0x200);alert(_0x3dde49);}_0xfd4009();}function createProgressBar(){const _0x196206=_0x3eaf,_0x3e1c01=document[_0x196206(0x219)](_0x196206(0x220));let _0x203e90=document['getElementById'](_0x196206(0x1f1));!_0x203e90&&(_0x203e90=document['createElement'](_0x196206(0x1e7)),_0x203e90['id']='searchProgress',_0x203e90[_0x196206(0x1d7)]=_0x196206(0x1d2),_0x3e1c01['parentNode'][_0x196206(0x21f)](_0x203e90,_0x3e1c01[_0x196206(0x1fb)])),_0x203e90['style'][_0x196206(0x1f0)]='block',_0x203e90['innerHTML']='\x0a\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22progress-bar-container\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22progress-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22progress-fill\x22\x20style=\x22width:\x200%\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22progress-text\x22>🔍\x20搜索进度:\x200%\x20(0/0)\x20⏳</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20';}function updateProgress(_0x20505b,_0x347da8){const _0x35a515=_0x3eaf,_0x1001e3=_0x347da8>0x0?(_0x20505b/_0x347da8*0x64)[_0x35a515(0x232)](0x2):0x0,_0x467b78=document['getElementById'](_0x35a515(0x1f1));if(!_0x467b78)return;const _0x4682d6=_0x467b78['querySelector'](_0x35a515(0x248)),_0x4c7291=_0x467b78[_0x35a515(0x219)](_0x35a515(0x1dc));_0x4682d6&&(_0x4682d6[_0x35a515(0x243)][_0x35a515(0x23c)]=_0x1001e3+'%');_0x4c7291&&(_0x4c7291[_0x35a515(0x22e)]=_0x35a515(0x22a)+_0x1001e3+_0x35a515(0x229)+_0x20505b[_0x35a515(0x21c)]()+'/'+_0x347da8[_0x35a515(0x21c)]()+')\x20'+(_0x1001e3>=0x64?'✅':'⏳'));if(_0x1001e3<0x1e)_0x467b78[_0x35a515(0x243)][_0x35a515(0x1d5)]='linear-gradient(135deg,\x20rgba(255,\x20152,\x200,\x200.4),\x20rgba(255,\x20152,\x200,\x200.2))',_0x467b78['style'][_0x35a515(0x212)]=_0x35a515(0x21d),_0x467b78['style'][_0x35a515(0x1d3)]=_0x35a515(0x21d);else _0x1001e3<0x46?(_0x467b78[_0x35a515(0x243)][_0x35a515(0x1d5)]=_0x35a515(0x218),_0x467b78['style'][_0x35a515(0x212)]=_0x35a515(0x20f),_0x467b78[_0x35a515(0x243)][_0x35a515(0x1d3)]=_0x35a515(0x20f)):(_0x467b78['style']['background']=_0x35a515(0x24c),_0x467b78[_0x35a515(0x243)][_0x35a515(0x212)]=_0x35a515(0x1e4),_0x467b78[_0x35a515(0x243)][_0x35a515(0x1d3)]='#4caf50');}function _0x3eaf(_0x229927,_0x5bd5c0){const _0x47e90f=_0x47e9();return _0x3eaf=function(_0x3eafe9,_0x43d37c){_0x3eafe9=_0x3eafe9-0x1cf;let _0x43397f=_0x47e90f[_0x3eafe9];return _0x43397f;},_0x3eaf(_0x229927,_0x5bd5c0);}function removeProgressBar(){const _0x585964=_0x3eaf,_0x15c3a2=document['getElementById'](_0x585964(0x1f1));_0x15c3a2&&(_0x15c3a2['style']['display']='none');}function combinations(_0x36293f,_0x1ec496){if(_0x1ec496>_0x36293f)return 0x0;if(_0x1ec496===0x0||_0x1ec496===_0x36293f)return 0x1;let _0x175867=0x1;for(let _0x989250=0x1;_0x989250<=_0x1ec496;_0x989250++){_0x175867=_0x175867*(_0x36293f-_0x1ec496+_0x989250)/_0x989250;}return Math['round'](_0x175867);}function getAllAvailablePercentages(){const _0x598992=_0x3eaf,_0x352fe1=[],_0xcc2b7=document[_0x598992(0x1ea)](_0x598992(0x228));return _0xcc2b7[_0x598992(0x224)](_0x565e7b=>{const _0x2ed850=_0x598992,_0x1e78df=_0x565e7b[_0x2ed850(0x210)][_0x2ed850(0x23f)],_0x46e9a6=_0x565e7b[_0x2ed850(0x1ea)](_0x2ed850(0x1e3)),_0x40802a=_0x565e7b[_0x2ed850(0x219)](_0x2ed850(0x209)),_0x3be360=_0x565e7b[_0x2ed850(0x219)](_0x2ed850(0x1ed)),_0x462874=parseFloat(_0x40802a['value'])||0x0,_0x32e536=parseFloat(_0x3be360[_0x2ed850(0x1d9)])||0x1,_0x160661=IEEE754Float32[_0x2ed850(0x202)](_0x32e536,_0x462874);if(_0x160661<=0x0)return;_0x46e9a6[_0x2ed850(0x224)]((_0x3617fd,_0x5a749a)=>{const _0x41179a=_0x2ed850,_0x3e814c=parseFloat(_0x3617fd[_0x41179a(0x1d9)]);if(_0x3e814c>0x0&&!isNaN(_0x3e814c)&&_0x3e814c>=_0x462874&&_0x3e814c<=_0x32e536){const _0x484543=IEEE754Float32['subtract'](_0x3e814c,_0x462874),_0xcd9267=IEEE754Float32[_0x41179a(0x1db)](_0x484543,_0x160661);_0x352fe1['push']({'groupId':parseInt(_0x1e78df),'inputIndex':_0x5a749a,'wearValue':_0x3e814c,'value':_0xcd9267,'displayValue':IEEE754Float32['formatPrecise'](_0xcd9267)});}});}),console[_0x598992(0x1e2)]('找到\x20'+_0x352fe1['length']+_0x598992(0x23d)),_0x352fe1;}function addResultToUI(_0x20214b){const _0x5756bf=_0x3eaf,_0x4cb742=document['getElementById']('resultsList'),_0x1fe68c=foundCombinations[_0x5756bf(0x238)]-0x1,_0x470afd=document[_0x5756bf(0x1e1)](_0x5756bf(0x1e7));_0x470afd['className']='result-item',_0x470afd['id']=_0x5756bf(0x244)+_0x1fe68c,_0x470afd[_0x5756bf(0x1f4)]=()=>selectResult(_0x1fe68c);const _0x8eea4d=_0x20214b['materials'][_0x5756bf(0x240)](_0x3fcbf3=>_0x3fcbf3['displayValue'])[_0x5756bf(0x207)](_0x5756bf(0x1ff)),_0x30a640=_0x8eea4d[_0x5756bf(0x238)]>0x402?_0x8eea4d[_0x5756bf(0x1d0)](0x0,0x402)+_0x5756bf(0x235):_0x8eea4d;_0x470afd['innerHTML']=_0x5756bf(0x20d)+IEEE754Float32[_0x5756bf(0x231)](_0x20214b[_0x5756bf(0x1fc)])+_0x5756bf(0x241)+_0x8eea4d+'\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20📦\x20材料组合:\x20'+_0x30a640+_0x5756bf(0x233)+IEEE754Float32[_0x5756bf(0x231)](_0x20214b[_0x5756bf(0x1cf)])+_0x5756bf(0x1f2)+_0x1fe68c+');\x20event.stopPropagation();\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20✅\x20使用此组合\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</button>\x0a\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20',_0x4cb742[_0x5756bf(0x23e)](_0x470afd),setTimeout(()=>{const _0x44fb41=_0x5756bf;_0x470afd[_0x44fb41(0x243)][_0x44fb41(0x208)]='1',_0x470afd[_0x44fb41(0x243)][_0x44fb41(0x22c)]=_0x44fb41(0x22f);},0xa);}function selectResult(_0x3f5a7b){const _0x186686=_0x3eaf;document[_0x186686(0x1ea)](_0x186686(0x1e5))['forEach'](_0x6e6907=>{const _0x3d76fc=_0x186686;_0x6e6907[_0x3d76fc(0x1e0)][_0x3d76fc(0x214)](_0x3d76fc(0x1f3));}),document[_0x186686(0x1ea)]('.material-highlight,\x20.percentage-highlight')[_0x186686(0x224)](_0x47bd6c=>{const _0x1edd32=_0x186686;_0x47bd6c[_0x1edd32(0x1e0)][_0x1edd32(0x214)](_0x1edd32(0x245),_0x1edd32(0x21b));});const _0x2e4f46=document[_0x186686(0x226)]('result_'+_0x3f5a7b);_0x2e4f46&&(_0x2e4f46[_0x186686(0x1e0)][_0x186686(0x230)](_0x186686(0x1f3)),_0x2e4f46['scrollIntoView']({'behavior':'smooth','block':'center'}));const _0x23c92b=foundCombinations[_0x3f5a7b];_0x23c92b&&_0x23c92b[_0x186686(0x247)]['forEach'](_0x2f7181=>{const _0x25491f=_0x186686,_0x596b19=document[_0x25491f(0x226)](_0x25491f(0x234)+_0x2f7181[_0x25491f(0x23f)]);if(_0x596b19){const _0x29a414=_0x596b19[_0x25491f(0x1ea)](_0x25491f(0x1e3)),_0x390bf4=_0x596b19[_0x25491f(0x1ea)](_0x25491f(0x204));_0x29a414[_0x2f7181[_0x25491f(0x1e9)]]&&_0x29a414[_0x2f7181[_0x25491f(0x1e9)]][_0x25491f(0x1e0)][_0x25491f(0x230)](_0x25491f(0x245)),_0x390bf4[_0x2f7181[_0x25491f(0x1e9)]]&&_0x390bf4[_0x2f7181[_0x25491f(0x1e9)]]['classList'][_0x25491f(0x230)](_0x25491f(0x21b));}});}function useCombination(_0x232d1f){const _0x2f9873=_0x3eaf,_0x395c9c=foundCombinations[_0x232d1f];if(!_0x395c9c)return;if(!confirm(_0x2f9873(0x1e6)+_0x395c9c[_0x2f9873(0x247)][_0x2f9873(0x238)]+_0x2f9873(0x1ef)))return;let _0x566f6e=0x0;_0x395c9c[_0x2f9873(0x247)][_0x2f9873(0x224)](_0x26ff18=>{const _0x105a2d=_0x2f9873,_0x3110bf=document[_0x105a2d(0x226)](_0x105a2d(0x234)+_0x26ff18[_0x105a2d(0x23f)]);if(_0x3110bf){const _0x56a102=_0x3110bf[_0x105a2d(0x1ea)](_0x105a2d(0x1e3)),_0x1c2ea6=_0x3110bf['querySelectorAll'](_0x105a2d(0x204));_0x56a102[_0x26ff18['inputIndex']]&&parseFloat(_0x56a102[_0x26ff18[_0x105a2d(0x1e9)]]['value'])>0x0&&(_0x56a102[_0x26ff18[_0x105a2d(0x1e9)]][_0x105a2d(0x1d9)]=_0x105a2d(0x24b),_0x566f6e++,_0x56a102[_0x26ff18[_0x105a2d(0x1e9)]][_0x105a2d(0x243)]['transition']=_0x105a2d(0x1d1),_0x56a102[_0x26ff18[_0x105a2d(0x1e9)]][_0x105a2d(0x243)][_0x105a2d(0x1d5)]=_0x105a2d(0x1ec),setTimeout(()=>{const _0xbf6e7f=_0x105a2d;_0x56a102[_0x26ff18[_0xbf6e7f(0x1e9)]][_0xbf6e7f(0x243)][_0xbf6e7f(0x1d5)]='';},0x3e8)),_0x1c2ea6[_0x26ff18[_0x105a2d(0x1e9)]]&&(_0x1c2ea6[_0x26ff18[_0x105a2d(0x1e9)]]['textContent']='');}}),addUsageHistory(_0x395c9c),calculateAllPercentages();const _0x4ada68=document[_0x2f9873(0x226)](_0x2f9873(0x244)+_0x232d1f);_0x4ada68&&(_0x4ada68[_0x2f9873(0x243)]['transition']='all\x200.5s\x20ease',_0x4ada68[_0x2f9873(0x243)][_0x2f9873(0x1d5)]=_0x2f9873(0x211),_0x4ada68[_0x2f9873(0x243)][_0x2f9873(0x212)]=_0x2f9873(0x1e4),setTimeout(()=>{const _0x29f08d=_0x2f9873;_0x4ada68[_0x29f08d(0x214)](),foundCombinations[_0x29f08d(0x21e)](_0x232d1f,0x1),renumberResults();},0x1f4)),setTimeout(()=>{const _0x346684=_0x2f9873;alert(_0x346684(0x227)+_0x566f6e+'\x20个材料！\x0a材料组合已应用。');},0x258);}function renumberResults(){const _0x2197a5=_0x3eaf,_0x175b05=document['getElementById'](_0x2197a5(0x20c)),_0x2c69ea=_0x175b05[_0x2197a5(0x1ea)](_0x2197a5(0x237));_0x2c69ea[_0x2197a5(0x224)]((_0x18d745,_0x2b44c0)=>{const _0x455986=_0x2197a5;_0x18d745['id']=_0x455986(0x244)+_0x2b44c0;const _0x571e8c=_0x18d745['querySelector'](_0x455986(0x205));_0x571e8c&&(_0x571e8c[_0x455986(0x1f4)]=_0x5e1ef6=>{const _0x67f86d=_0x455986;useCombination(_0x2b44c0),_0x5e1ef6[_0x67f86d(0x213)]();}),_0x18d745[_0x455986(0x1f4)]=()=>selectResult(_0x2b44c0);}),updateResultsCount();}function stopSearch(){const _0x2bd38b=_0x3eaf;isSearching=![],document[_0x2bd38b(0x219)](_0x2bd38b(0x221))[_0x2bd38b(0x1f5)]=![],removeProgressBar(),console['log']('搜索已手动停止');}function clearResults(){const _0xa365af=_0x3eaf;foundCombinations=[],document[_0xa365af(0x226)](_0xa365af(0x20c))[_0xa365af(0x1e8)]='',updateResultsCount(),removeProgressBar(),document[_0xa365af(0x1ea)](_0xa365af(0x201))[_0xa365af(0x224)](_0x3c31b7=>{const _0x67125=_0xa365af;_0x3c31b7['classList'][_0x67125(0x214)](_0x67125(0x245),_0x67125(0x21b));});}function updateResultsCount(){const _0x2e4571=_0x3eaf,_0x1672b4=currentLanguage===_0x2e4571(0x22d)?_0x2e4571(0x206)+foundCombinations[_0x2e4571(0x238)]+'\x20个组合':_0x2e4571(0x236)+foundCombinations[_0x2e4571(0x238)]+_0x2e4571(0x20e);document['getElementById']('resultsCount')['textContent']=_0x1672b4;}
+// ========== 组合搜索功能 ==========
+let isSearching = false;
+let foundCombinations = [];
+let currentSearchId = null;
+const MAX_RESULTS = 100;
+const BATCH_SIZE = 10000;
+
+function findCombinations() {
+    if (isSearching) {
+        alert('搜索正在进行中，请等待完成或停止当前搜索');
+        return;
+    }
+
+    clearResults();
+
+    const combinationCount = parseInt(document.getElementById('combinationCount').value);
+    const productMinWear = parseFloat(document.getElementById('productMinWear').value) || 0;
+    const productMaxWear = parseFloat(document.getElementById('productMaxWear').value) || 1;
+    const targetProductWear = parseFloat(document.getElementById('targetProductWear').value);
+    const significantDigits = parseInt(document.getElementById('significantDigits').value);
+
+    if (productMinWear >= productMaxWear) {
+        alert('产物最大磨损必须大于最小磨损！');
+        return;
+    }
+
+    if (targetProductWear < productMinWear || targetProductWear > productMaxWear) {
+        alert('期望产物磨损必须在产物磨损范围内！');
+        return;
+    }
+
+    const availablePercentages = getAllAvailablePercentages();
+    if (availablePercentages.length < combinationCount) {
+        alert(`可用材料数量不足！需要 ${combinationCount} 个，当前只有 ${availablePercentages.length} 个`);
+        return;
+    }
+
+    isSearching = true;
+    foundCombinations = [];
+    currentSearchId = Date.now();
+
+    document.getElementById('searchResults').style.display = 'block';
+    updateResultsCount();
+
+    document.querySelector('.btn-search').disabled = true;
+
+    setTimeout(() => {
+        performOptimizedCombinationSearch(
+            availablePercentages,
+            combinationCount,
+            productMinWear,
+            productMaxWear,
+            targetProductWear,
+            significantDigits,
+            currentSearchId
+        );
+    }, 100);
+}
+
+function performOptimizedCombinationSearch(percentages, count, minWear, maxWear, targetWear, digits, searchId) {
+    const totalCombinations = combinations(percentages.length, count);
+    let checkedCombinations = 0;
+    let batchResults = [];
+
+    console.log(`优化搜索开始: 总共 ${totalCombinations.toLocaleString()} 种组合`);
+
+    // 预计算常量
+    const wearRange = getIEEE754(getIEEE754(maxWear) - getIEEE754(minWear));
+    const targetWearFloat = getIEEE754(targetWear);
+    const minWearFloat = getIEEE754(minWear);
+
+    // 创建进度条
+    createProgressBar();
+
+    // ========== 重构的组合生成器 ==========
+    // 基于第一个代码的高效算法重写
+    function* optimizedCombinationGenerator(arr, k) {
+        const n = arr.length;
+        if (k > n) return;
+
+        // 初始化位置数组 - 这是关键优化
+        const indices = Array.from({ length: k }, (_, i) => i);
+
+        while (true) {
+            // 生成当前组合
+            const combo = indices.map(i => arr[i]);
+            yield combo;
+
+            // 寻找下一个组合 - 核心优化算法
+            let i = k - 1;
+            while (i >= 0 && indices[i] === n - k + i) {
+                i--;
+            }
+
+            if (i < 0) break; // 所有组合已生成
+
+            indices[i]++;
+            for (let j = i + 1; j < k; j++) {
+                indices[j] = indices[j - 1] + 1;
+            }
+        }
+    }
+
+    // ========== 优化的批处理函数 ==========
+    function processBatch(combinationsBatch) {
+        const batchMatches = [];
+
+        for (const combination of combinationsBatch) {
+            if (!isSearching || searchId !== currentSearchId) {
+                return [];
+            }
+
+            checkedCombinations++;
+
+            // 优化的磨损计算 - 减少函数调用
+            let sum = 0;
+            for (const percent of combination) {
+                sum = getIEEE754(sum + getIEEE754(percent.value))
+            }
+
+            // 批量IEEE754转换（减少转换次数）
+            const averagePercent = getIEEE754(sum / getIEEE754(count))
+
+
+
+
+            const productWear = getIEEE754(getIEEE754(averagePercent * wearRange) + minWearFloat);
+
+
+
+
+            // 优化的比较逻辑 - 使用数值比较替代字符串比较
+            const wearDiff = Math.abs(productWear - targetWearFloat);
+            const tolerance = Math.pow(10, -digits) / 2; // 根据有效位数计算容差
+
+            if (wearDiff <= tolerance) {
+                batchMatches.push({
+                    materials: combination,
+                    productWear: productWear,
+                    averagePercent: averagePercent,
+                    wearDiff: wearDiff
+                });
+
+                if (foundCombinations.length + batchMatches.length >= MAX_RESULTS) {
+                    return batchMatches;
+                }
+            }
+        }
+
+        return batchMatches;
+    }
+
+    // ========== 重构的主处理逻辑 ==========
+    function processInBatches() {
+        const generator = optimizedCombinationGenerator(percentages, count);
+        let progressUpdateCounter = 0;
+        const progressUpdateInterval = Math.max(1000, Math.floor(totalCombinations * 0.01));
+
+        // 使用更高效的批处理
+        function processNextBatch() {
+            if (!isSearching || searchId !== currentSearchId) {
+                finishSearch();
+                return;
+            }
+
+            const batch = [];
+            for (let i = 0; i < BATCH_SIZE; i++) {
+                const next = generator.next();
+                if (next.done) break;
+                batch.push(next.value);
+            }
+
+            if (batch.length === 0) {
+                finishSearch();
+                return;
+            }
+
+            const batchMatches = processBatch(batch);
+
+            // 批量更新结果 - 减少DOM操作
+            if (batchMatches.length > 0) {
+                foundCombinations.push(...batchMatches);
+
+                // 延迟UI更新，提高性能
+                if (foundCombinations.length <= MAX_RESULTS) {
+                    setTimeout(() => {
+                        batchMatches.forEach(result => {
+                            addResultToUI(result);
+                        });
+                        updateResultsCount();
+                    }, 0);
+                }
+            }
+
+            // 优化的进度更新
+            progressUpdateCounter += batch.length;
+            if (progressUpdateCounter >= progressUpdateInterval) {
+                updateProgress(checkedCombinations, totalCombinations);
+                progressUpdateCounter = 0;
+            }
+
+            if (foundCombinations.length >= MAX_RESULTS) {
+                finishSearch();
+                return;
+            }
+
+            // 使用更快的调度方式
+            if (typeof setImmediate !== 'undefined') {
+                setImmediate(processNextBatch);
+            } else {
+                setTimeout(processNextBatch, 0);
+            }
+        }
+
+        processNextBatch();
+    }
+
+    function finishSearch() {
+        if (!isSearching || searchId !== currentSearchId) return;
+
+        isSearching = false;
+        document.querySelector('.btn-search').disabled = false;
+
+        removeProgressBar();
+
+        // 最终进度更新
+        updateProgress(checkedCombinations, totalCombinations);
+
+        const message = checkedCombinations === totalCombinations ?
+            `✅ 搜索完成！检查了 ${checkedCombinations.toLocaleString()} 个组合，找到 ${foundCombinations.length} 个符合条件的结果` :
+            `⏹️ 搜索完成！检查了 ${checkedCombinations.toLocaleString()} 个组合，找到 ${foundCombinations.length} 个符合条件的结果`;
+
+        console.log(message);
+
+        // 可选：显示完成提示
+        if (foundCombinations.length > 0 || checkedCombinations === totalCombinations) {
+            setTimeout(() => alert(message), 100);
+        }
+    }
+
+    // 启动处理
+    processInBatches();
+}
+
+function combinations(n, k) {
+    if (k > n) return 0;
+    if (k === 0 || k === n) return 1;
+
+    // 使用更高效的计算方式
+    k = Math.min(k, n - k);
+    let result = 1;
+    for (let i = 1; i <= k; i++) {
+        result = result * (n - k + i) / i;
+    }
+    return Math.round(result);
+}
+function getAllAvailablePercentages() {
+    const allPercentages = [];
+    const groups = document.querySelectorAll('.material-group');
+
+    groups.forEach((group) => {
+        const groupId = group.dataset.groupId;
+        const materialInputs = group.querySelectorAll('.material-input');
+        const minWearInput = group.querySelector('.fc-min-wear');
+        const maxWearInput = group.querySelector('.fc-max-wear');
+
+        const minWear = getIEEE754(parseFloat(minWearInput.value) || 0);
+        const maxWear = getIEEE754Z(parseFloat(maxWearInput.value) || 1);
+        const range = getIEEE754(maxWear, minWear);
+
+        if (range <= 0) return;
+
+        materialInputs.forEach((input, inputIndex) => {
+            const wearValue = getIEEE754(parseFloat(input.value));
+            if (wearValue > 0 && !isNaN(wearValue) && wearValue >= minWear && wearValue <= maxWear) {
+                const numerator = getIEEE754(wearValue - minWear);
+                const percentage = getIEEE754(numerator / range);
+
+                allPercentages.push({
+                    groupId: parseInt(groupId),
+                    inputIndex: inputIndex,
+                    wearValue: wearValue, // 原始磨损值
+                    originalWear: wearValue, // 新增：明确存储原始磨损值
+                    value: percentage, // 百分比值（用于计算）
+                    displayValue: percentage,
+                    // 新增：格式化显示的磨损值
+                    displayWear: wearValue.toFixed(10)
+                });
+            }
+        });
+    });
+
+    console.log(`找到 ${allPercentages.length} 个可用材料`);
+    return allPercentages;
+}
+
+function addResultToUI(result) {
+    const resultsList = document.getElementById('resultsList');
+    const resultId = foundCombinations.length - 1;
+
+    const resultItem = document.createElement('div');
+    resultItem.className = 'result-item';
+    resultItem.id = `result_${resultId}`;
+    resultItem.onclick = () => selectResult(resultId);
+
+    // 修改：显示原始磨损值而不是百分比
+    const materialsStr = result.materials.map(m => {
+        const group = document.getElementById(`materialGroup_${m.groupId}`);
+        let groupName = `组${m.groupId}`;
+        if (group) {
+            const titleInput = group.querySelector('.group-title-input');
+            if (titleInput && titleInput.value.trim()) {
+                groupName = titleInput.value.trim();
+            }
+        }
+        return `${m.wearValue.toFixed(10)} (${groupName}-${m.inputIndex + 1})`;
+    }).join(' + ');
+
+    const displayStr = materialsStr.length > 1068 ?
+        materialsStr.substring(0, 1068) + '...' : materialsStr;
+    
+    resultItem.innerHTML = `
+        <div class="result-wear">
+            🎯 产物磨损: ${result.productWear}
+            ${result.wearDiff ? `<small>(误差: ${result.wearDiff.toExponential(3)})</small>` : ''}
+        </div>
+        <div class="result-materials" title="${materialsStr.replace(/"/g, '&quot;')}">
+            📦 材料组合: ${displayStr}
+        </div>
+        <div class="result-average">
+            📊 平均百分比: ${result.averagePercent}
+        </div>
+        <div class="result-actions">
+            <button class="btn-use" onclick="useCombination(${resultId}); event.stopPropagation();">
+                ✅ 使用此组合
+            </button>
+        </div>
+    `;
+
+    resultsList.appendChild(resultItem);
+
+    resultItem.style.opacity = '0';
+    resultItem.style.transform = 'translateY(-10px)';
+    resultItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+    setTimeout(() => {
+        resultItem.style.opacity = '1';
+        resultItem.style.transform = 'translateY(0)';
+    }, 10);
+}
+function selectResult(resultId) {
+    document.querySelectorAll('.result-item.selected').forEach(item => {
+        item.classList.remove('selected');
+    });
+
+    document.querySelectorAll('.material-highlight, .percentage-highlight').forEach(el => {
+        el.classList.remove('material-highlight', 'percentage-highlight');
+    });
+
+    const resultItem = document.getElementById(`result_${resultId}`);
+    if (resultItem) {
+        resultItem.classList.add('selected');
+        resultItem.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+
+    const result = foundCombinations[resultId];
+    if (result) {
+        result.materials.forEach(material => {
+            const group = document.getElementById(`materialGroup_${material.groupId}`);
+            if (group) {
+                const inputs = group.querySelectorAll('.material-input');
+                const percentages = group.querySelectorAll('.percentage-display');
+
+                if (inputs[material.inputIndex]) {
+                    inputs[material.inputIndex].classList.add('material-highlight');
+                }
+                if (percentages[material.inputIndex]) {
+                    percentages[material.inputIndex].classList.add('percentage-highlight');
+                }
+            }
+        });
+    }
+}
+
+function useCombination(resultId) {
+    const result = foundCombinations[resultId];
+    if (!result) return;
+
+    if (!confirm(`🎯 确定要使用这组材料吗？\n使用后 ${result.materials.length} 个材料将从输入框中移除。`)) {
+        return;
+    }
+
+    let removedCount = 0;
+    result.materials.forEach(material => {
+        const group = document.getElementById(`materialGroup_${material.groupId}`);
+        if (group) {
+            const inputs = group.querySelectorAll('.material-input');
+            const percentages = group.querySelectorAll('.percentage-display');
+
+            if (inputs[material.inputIndex] && parseFloat(inputs[material.inputIndex].value) > 0) {
+                inputs[material.inputIndex].value = '0.0000000000';
+                removedCount++;
+
+                inputs[material.inputIndex].style.transition = 'all 0.5s ease';
+                inputs[material.inputIndex].style.background = 'rgba(244, 67, 54, 0.3)';
+                setTimeout(() => {
+                    inputs[material.inputIndex].style.background = '';
+                }, 1000);
+            }
+            if (percentages[material.inputIndex]) {
+                percentages[material.inputIndex].textContent = '';
+            }
+        }
+    });
+
+    addUsageHistory(result);
+    calculateAllPercentages();
+
+    const resultItem = document.getElementById(`result_${resultId}`);
+    if (resultItem) {
+        resultItem.style.transition = 'all 0.5s ease';
+        resultItem.style.background = 'linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1))';
+        resultItem.style.borderColor = '#4caf50';
+
+        setTimeout(() => {
+            resultItem.remove();
+            foundCombinations.splice(resultId, 1);
+            renumberResults();
+        }, 500);
+    }
+
+    setTimeout(() => {
+        alert(`✅ 成功移除 ${removedCount} 个材料！\n材料组合已应用。`);
+    }, 600);
+}
+
+function renumberResults() {
+    const resultsList = document.getElementById('resultsList');
+    const items = resultsList.querySelectorAll('.result-item');
+
+    items.forEach((item, index) => {
+        item.id = `result_${index}`;
+        const useButton = item.querySelector('.btn-use');
+        if (useButton) {
+            useButton.onclick = (e) => {
+                useCombination(index);
+                e.stopPropagation();
+            };
+        }
+        item.onclick = () => selectResult(index);
+    });
+
+    updateResultsCount();
+}
+
+function stopSearch() {
+    isSearching = false;
+    document.querySelector('.btn-search').disabled = false;
+    removeProgressBar();
+    console.log('搜索已手动停止');
+}
+
+function clearResults() {
+    foundCombinations = [];
+    document.getElementById('resultsList').innerHTML = '';
+    updateResultsCount();
+    removeProgressBar();
+
+    document.querySelectorAll('.material-highlight, .percentage-highlight').forEach(el => {
+        el.classList.remove('material-highlight', 'percentage-highlight');
+    });
+}
+
+function updateResultsCount() {
+    const countText = currentLanguage === 'zh-CN' ?
+        `已找到 ${foundCombinations.length} 个组合` :
+        `Found ${foundCombinations.length} combinations`;
+    document.getElementById('resultsCount').textContent = countText;
+}
+
+// ========== 进度条功能 ==========
+function createProgressBar() {
+    const resultsHeader = document.querySelector('.results-header');
+    let progressElement = document.getElementById('searchProgress');
+
+    if (!progressElement) {
+        progressElement = document.createElement('div');
+        progressElement.id = 'searchProgress';
+        progressElement.className = 'search-progress';
+        resultsHeader.parentNode.insertBefore(progressElement, resultsHeader.nextSibling);
+    }
+
+    progressElement.style.display = 'block';
+    progressElement.innerHTML = `
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">🔍 搜索进度: 0% (0/0) ⏳</div>
+        </div>
+    `;
+}
+
+function updateProgress(checked, total) {
+    const progress = total > 0 ? ((checked / total) * 100).toFixed(2) : 0;
+
+    const progressElement = document.getElementById('searchProgress');
+    if (!progressElement) return;
+
+    const progressFill = progressElement.querySelector('.progress-fill');
+    const progressText = progressElement.querySelector('.progress-text');
+
+    if (progressFill) {
+        progressFill.style.width = `${progress}%`;
+    }
+
+    if (progressText) {
+        progressText.textContent = `🔍 搜索进度: ${progress}% (${checked.toLocaleString()}/${total.toLocaleString()}) ${progress >= 100 ? '✅' : '⏳'}`;
+    }
+
+    // 根据进度改变颜色
+    if (progress < 30) {
+        progressElement.style.background = 'linear-gradient(135deg, rgba(255, 152, 0, 0.4), rgba(255, 152, 0, 0.2))';
+        progressElement.style.borderColor = '#ff9800';
+        progressElement.style.color = '#ff9800';
+    } else if (progress < 70) {
+        progressElement.style.background = 'linear-gradient(135deg, rgba(33, 150, 243, 0.4), rgba(33, 150, 243, 0.2))';
+        progressElement.style.borderColor = '#2196f3';
+        progressElement.style.color = '#2196f3';
+    } else {
+        progressElement.style.background = 'linear-gradient(135deg, rgba(76, 175, 80, 0.4), rgba(76, 175, 80, 0.2))';
+        progressElement.style.borderColor = '#4caf50';
+        progressElement.style.color = '#4caf50';
+    }
+}
+
+function removeProgressBar() {
+    const progressElement = document.getElementById('searchProgress');
+    if (progressElement) {
+        progressElement.style.display = 'none';
+    }
+}

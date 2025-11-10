@@ -1,1 +1,215 @@
-const _0x586b63=_0x38ef;(function(_0x327c32,_0x547214){const _0x26bc1c=_0x38ef,_0x347c9e=_0x327c32();while(!![]){try{const _0x245f68=parseInt(_0x26bc1c(0x1d1))/0x1*(parseInt(_0x26bc1c(0x1c2))/0x2)+parseInt(_0x26bc1c(0x1d2))/0x3*(parseInt(_0x26bc1c(0x1dc))/0x4)+parseInt(_0x26bc1c(0x1c1))/0x5*(parseInt(_0x26bc1c(0x1e2))/0x6)+-parseInt(_0x26bc1c(0x1de))/0x7*(parseInt(_0x26bc1c(0x1ce))/0x8)+-parseInt(_0x26bc1c(0x1dd))/0x9+parseInt(_0x26bc1c(0x1df))/0xa*(-parseInt(_0x26bc1c(0x1cb))/0xb)+parseInt(_0x26bc1c(0x1c7))/0xc*(-parseInt(_0x26bc1c(0x1e0))/0xd);if(_0x245f68===_0x547214)break;else _0x347c9e['push'](_0x347c9e['shift']());}catch(_0x5cbcb9){_0x347c9e['push'](_0x347c9e['shift']());}}}(_0x5618,0x5dee4));function _0x38ef(_0x302b39,_0x3346a5){const _0x5618a7=_0x5618();return _0x38ef=function(_0x38ef20,_0x4f90cf){_0x38ef20=_0x38ef20-0x1c0;let _0x8b9043=_0x5618a7[_0x38ef20];return _0x8b9043;},_0x38ef(_0x302b39,_0x3346a5);}class IEEE754Float32{static[_0x586b63(0x1d3)](_0x11e24d){const _0x1518d8=_0x586b63,_0x3f89b3=new ArrayBuffer(0x4),_0x1d022e=new DataView(_0x3f89b3);return _0x1d022e[_0x1518d8(0x1cf)](0x0,_0x11e24d,!![]),_0x1d022e[_0x1518d8(0x1cc)](0x0,!![]);}static['add'](_0x513e4d,_0x2682c6){const _0x2d7cca=_0x586b63;return this[_0x2d7cca(0x1d3)](this[_0x2d7cca(0x1d3)](_0x513e4d)+this['toFloat32'](_0x2682c6));}static['subtract'](_0x1acd03,_0x5c9ba3){const _0x2eac7d=_0x586b63;return this[_0x2eac7d(0x1d3)](this[_0x2eac7d(0x1d3)](_0x1acd03)-this[_0x2eac7d(0x1d3)](_0x5c9ba3));}static[_0x586b63(0x1db)](_0x4ab8f1,_0xeb23c2){const _0x3eb30c=_0x586b63;return this['toFloat32'](this[_0x3eb30c(0x1d3)](_0x4ab8f1)*this[_0x3eb30c(0x1d3)](_0xeb23c2));}static[_0x586b63(0x1c5)](_0x3b8535,_0x13b501){const _0x15c77a=_0x586b63;if(_0x13b501===0x0)return 0x0;return this[_0x15c77a(0x1d3)](this[_0x15c77a(0x1d3)](_0x3b8535)/this['toFloat32'](_0x13b501));}static[_0x586b63(0x1e3)](_0x4cdb51){const _0x267dc7=_0x586b63,_0x73d825=this[_0x267dc7(0x1d3)](_0x4cdb51);return parseFloat(_0x73d825[_0x267dc7(0x1da)](0xc))['toString']();}static[_0x586b63(0x1d5)](_0x575745,_0x54456f){const _0x1e7034=_0x586b63,_0x54cd10=this[_0x1e7034(0x1d3)](_0x575745),_0x4f5619=this[_0x1e7034(0x1c4)](_0x54cd10[_0x1e7034(0x1ca)]());return _0x4f5619[_0x1e7034(0x1e1)](0x0,_0x54456f);}static[_0x586b63(0x1cd)](_0x396f80,_0x224f4d,_0x147666){const _0x298249=_0x586b63,_0x5d6d9f=this[_0x298249(0x1d3)](_0x396f80),_0x45f5ed=this[_0x298249(0x1d3)](_0x224f4d),_0xfd99dc=this[_0x298249(0x1c4)](_0x5d6d9f[_0x298249(0x1ca)]()),_0x30b429=this[_0x298249(0x1c4)](_0x45f5ed[_0x298249(0x1ca)]()),_0x3f0675=_0xfd99dc[_0x298249(0x1e1)](0x0,_0x147666),_0x26124a=_0x30b429[_0x298249(0x1e1)](0x0,_0x147666);return _0x3f0675===_0x26124a;}static[_0x586b63(0x1c4)](_0x271108){const _0x30f3a8=_0x586b63;(_0x271108[_0x30f3a8(0x1d9)]('e')||_0x271108['includes']('E'))&&(_0x271108=parseFloat(_0x271108)[_0x30f3a8(0x1ca)]());let [_0x1899cf,_0x200da8='']=_0x271108['split']('.');if(_0x1899cf!=='0')return _0x1899cf+_0x200da8;let _0x40b479=-0x1;for(let _0x4c9019=0x0;_0x4c9019<_0x200da8[_0x30f3a8(0x1d7)];_0x4c9019++){if(_0x200da8[_0x4c9019]!=='0'){_0x40b479=_0x4c9019;break;}}if(_0x40b479===-0x1)return'0';return _0x200da8[_0x30f3a8(0x1e1)](_0x40b479);}static[_0x586b63(0x1c0)](_0x23c954){const _0x4c7f4a=_0x586b63;return this[_0x4c7f4a(0x1d3)](_0x23c954);}static[_0x586b63(0x1c8)](_0x15530d){const _0x246597=_0x586b63;return _0x15530d[_0x246597(0x1c6)](_0x53cb92=>this['toFloat32'](_0x53cb92));}static['precomputeConstants'](_0x2ffdcd){const _0x15579a=_0x586b63,_0x594f97={};for(const [_0x36cdb3,_0x481d90]of Object[_0x15579a(0x1d8)](_0x2ffdcd)){_0x594f97[_0x36cdb3]=this[_0x15579a(0x1d3)](_0x481d90);}return _0x594f97;}static[_0x586b63(0x1c3)](_0x528ba2,_0x4eefab,_0x3cde64=0xc){const _0x2837ec=_0x586b63,_0xc7a19e=this[_0x2837ec(0x1d3)](_0x528ba2),_0x5a039e=this[_0x2837ec(0x1d3)](_0x4eefab);return Math['abs'](_0xc7a19e-_0x5a039e)<Math[_0x2837ec(0x1d4)](0xa,-_0x3cde64);}static['isMatchImproved'](_0x3b7369,_0x4ed3be,_0x481e2b){const _0x3b7354=_0x586b63,_0x59fe6c=this[_0x3b7354(0x1d3)](_0x3b7369),_0x5f263d=this['toFloat32'](_0x4ed3be),_0x553157=_0x59fe6c[_0x3b7354(0x1d0)](0xa)[_0x3b7354(0x1d6)](/\.?0+$/,''),_0x4e7997=_0x5f263d[_0x3b7354(0x1d0)](0xa)[_0x3b7354(0x1d6)](/\.?0+$/,''),_0x51f680=_0x553157['replace']('.',''),_0x538783=_0x4e7997[_0x3b7354(0x1d6)]('.','');return _0x51f680[_0x3b7354(0x1e1)](0x0,_0x481e2b)===_0x538783[_0x3b7354(0x1e1)](0x0,_0x481e2b);}}typeof window!==_0x586b63(0x1c9)&&(window['IEEE754Float32']=IEEE754Float32);function _0x5618(){const _0x23668a=['3TXnRJC','toFloat32','pow','getConformingDigits','replace','length','entries','includes','toPrecision','multiply','2936228LuaKzO','2883258gcFOjn','7qENQAR','1502250Vcvulq','13058175XnXhWZ','substring','4604742lscVuk','formatPrecise','ensureFloat32','5TlKGtS','2PDcfhY','fastCompare','removeLeadingZeros','divide','map','12UxuYmn','ensureArrayFloat32','undefined','toString','33SOjSsY','getFloat32','isMatchWithConformingDigits','582080LqseEu','setFloat32','toFixed','731498pLnDda'];_0x5618=function(){return _0x23668a;};return _0x5618();}
+// ========== IEEE754单精度浮点数工具函数 ==========
+class IEEE754Float32 {
+    static toFloat32(num) {
+        const buffer = new ArrayBuffer(4);
+        const view = new DataView(buffer);
+        view.setFloat32(0, num, true);
+        return view.getFloat32(0, true);
+    }
+    
+    static add(a, b) {
+        return this.toFloat32(this.toFloat32(a) + this.toFloat32(b));
+    }
+    
+    static subtract(a, b) {
+        return this.toFloat32(this.toFloat32(a) - this.toFloat32(b));
+    }
+    
+    static multiply(a, b) {
+        return this.toFloat32(this.toFloat32(a) * this.toFloat32(b));
+    }
+    
+    static divide(a, b) {
+        if (b === 0) return 0;
+        return this.toFloat32(this.toFloat32(a) / this.toFloat32(b));
+    }
+    
+    static formatPrecise(num) {
+        const float32 = this.toFloat32(num);
+        return parseFloat(float32.toPrecision(12)).toString();
+    }
+    
+    // 新增：获取符合位数的方法
+    static getConformingDigits(num, digits) {
+        const float32 = this.toFloat32(num);
+        const numStr = this.removeLeadingZeros(float32.toString());
+        return numStr.substring(0, digits);
+    }
+    
+    // 符合位数匹配函数
+    static isMatchWithConformingDigits(actual, target, digits) {
+        const actualFloat = this.toFloat32(actual);
+        const targetFloat = this.toFloat32(target);
+        
+        // 转换为字符串，移除前导零和小数点
+        const actualStr = this.removeLeadingZeros(actualFloat.toString());
+        const targetStr = this.removeLeadingZeros(targetFloat.toString());
+        
+        // 比较前N位符合数字
+        const actualConforming = actualStr.substring(0, digits);
+        const targetConforming = targetStr.substring(0, digits);
+        
+        return actualConforming === targetConforming;
+    }
+    
+    // 移除前导零和小数点，只保留有效数字
+    static removeLeadingZeros(numStr) {
+        // 处理科学计数法
+        if (numStr.includes('e') || numStr.includes('E')) {
+            numStr = parseFloat(numStr).toString();
+        }
+        
+        // 分割整数和小数部分
+        let [integerPart, decimalPart = ''] = numStr.split('.');
+        
+        // 如果整数部分不是0，直接返回整数部分+小数部分
+        if (integerPart !== '0') {
+            return integerPart + decimalPart;
+        }
+        
+        // 整数部分是0，找到小数部分第一个非零数字的位置
+        let firstNonZeroIndex = -1;
+        for (let i = 0; i < decimalPart.length; i++) {
+            if (decimalPart[i] !== '0') {
+                firstNonZeroIndex = i;
+                break;
+            }
+        }
+        
+        if (firstNonZeroIndex === -1) {
+            // 全部是0，返回0
+            return '0';
+        }
+        
+        // 返回从第一个非零数字开始的部分
+        return decimalPart.substring(firstNonZeroIndex);
+    }
+    
+    // 确保所有数值都是IEEE754单精度
+    static ensureFloat32(num) {
+        return this.toFloat32(num);
+    }
+    
+    // 批量转换数组为IEEE754
+    static ensureArrayFloat32(arr) {
+        return arr.map(num => this.toFloat32(num));
+    }
+    
+    // 预计算常量并缓存（性能优化）
+    static precomputeConstants(constantsObj) {
+        const result = {};
+        for (const [key, value] of Object.entries(constantsObj)) {
+            result[key] = this.toFloat32(value);
+        }
+        return result;
+    }
+    
+    // 快速比较函数（优化性能）
+    static fastCompare(a, b, precision = 12) {
+        const aFloat = this.toFloat32(a);
+        const bFloat = this.toFloat32(b);
+        
+        // 对于高精度比较，使用更高效的方法
+        return Math.abs(aFloat - bFloat) < Math.pow(10, -precision);
+    }
+    
+    // 新增：改进的符合位数匹配方法（更可靠）
+    static isMatchImproved(actual, target, digits) {
+        const actualFloat = this.toFloat32(actual);
+        const targetFloat = this.toFloat32(target);
+        
+        // 转换为固定精度的字符串进行比较
+        const actualStr = actualFloat.toFixed(10).replace(/\.?0+$/, '');
+        const targetStr = targetFloat.toFixed(10).replace(/\.?0+$/, '');
+        
+        // 移除小数点
+        const actualDigits = actualStr.replace('.', '');
+        const targetDigits = targetStr.replace('.', '');
+        
+        // 比较前N位数字
+        return actualDigits.substring(0, digits) === targetDigits.substring(0, digits);
+    }
+}
+
+// 导出为全局对象
+if (typeof window !== 'undefined') { window.IEEE754Float32 = IEEE754Float32;}
+   
+ function getIEEE754(x) {
+  var float = new Float32Array(1);
+  float[0] = x;
+  return float[0];
+}  // ========== IEEE754 转换器功能 ==========
+
+// 扩展IEEE754工具类
+IEEE754Float32.getBinaryRepresentation = function(num) {
+    const float32 = this.toFloat32(num);
+    const buffer = new ArrayBuffer(4);
+    const view = new DataView(buffer);
+    view.setFloat32(0, float32, true);
+    
+    const uint32 = view.getUint32(0, true);
+    let binary = uint32.toString(2).padStart(32, '0');
+    
+    // 格式化显示：符号位 | 指数位 | 尾数位
+    return `${binary.substring(0, 1)} ${binary.substring(1, 9)} ${binary.substring(9)}`;
+};
+
+IEEE754Float32.getHexRepresentation = function(num) {
+    const float32 = this.toFloat32(num);
+    const buffer = new ArrayBuffer(4);
+    const view = new DataView(buffer);
+    view.setFloat32(0, float32, true);
+    
+    const uint32 = view.getUint32(0, true);
+    return '0x' + uint32.toString(16).toUpperCase().padStart(8, '0');
+};
+
+// 转换函数
+function convertIEEE754() {
+    const input = document.getElementById('ieee754Input').value.trim();
+    const resultsSection = document.getElementById('ieee754Results');
+    
+    if (!input) {
+        resultsSection.style.display = 'none';
+        return;
+    }
+    
+    const numberValue = parseFloat(input);
+    if (isNaN(numberValue)) {
+        alert('请输入有效的数字！');
+        return;
+    }
+    
+    // 转换为IEEE754单精度
+    const ieee754Value = IEEE754Float32.toFloat32(numberValue);
+    
+    // 更新显示
+    document.getElementById('originalValue').textContent = numberValue.toString();
+    document.getElementById('ieee754Value').textContent = IEEE754Float32.formatPrecise(ieee754Value);
+    
+ 
+     
+
+
+    
+    resultsSection.style.display = 'block';
+}
+
+// 设置示例
+function setExample(value) {
+    document.getElementById('ieee754Input').value = value;
+    convertIEEE754();
+}
+
+// 清空转换器
+function clearConverter() {
+    document.getElementById('ieee754Input').value = '';
+    document.getElementById('ieee754Results').style.display = 'none';
+}
+
+
+
+// 初始化转换器
+function initIEEE754Converter() {
+    console.log('IEEE754转换器已初始化');
+}

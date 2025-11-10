@@ -19,8 +19,8 @@ const translations = {
         'requiredPercentage': '所需磨损百分比:',
         'averagePercentage': '材料平均百分比:',
         'percentageDifference': '百分比差距:',
-        'checkMatch': '检查匹配度',
-        'suggestionHint': '点击"检查匹配度"查看建议',
+        'checkMatch': '检查材料平均磨损',
+        'suggestionHint': '材料添加完成后，点击"检查材料平均磨损"查看建议',
         'foundCombinations': '找到的组合结果',
         'foundCount': '已找到 0 个组合',
         'clearResults': '清空结果',
@@ -48,7 +48,9 @@ const translations = {
         'fillRanges': '填充范围',
         'smartFill': '智能填充',
         'minWearPlaceholder': '最小磨损值，如: 0.00, 0.10, 0.20...',
-        'maxWearPlaceholder': '最大磨损值，如: 0.50, 0.60, 0.70...'
+        'maxWearPlaceholder': '最大磨损值，如: 0.50, 0.60, 0.70...',
+        'targetWear': '目标产物磨损',
+        'remainingCalculation': '剩余材料计算',
     },
     'en': {
         'mainTab': 'Material Combination Calculator',
@@ -69,8 +71,8 @@ const translations = {
         'requiredPercentage': 'Required wear percentage:',
         'averagePercentage': 'Average material percentage:',
         'percentageDifference': 'Percentage difference:',
-        'checkMatch': 'Check Match',
-        'suggestionHint': 'Click "Check Match" for suggestions',
+        'checkMatch': 'Check Average material percentage ',
+        'suggestionHint': 'put materials and Click "Check Match" for suggestions',
         'foundCombinations': 'Found Combinations',
         'foundCount': 'Found 0 combinations',
         'clearResults': 'Clear Results',
@@ -98,7 +100,9 @@ const translations = {
         'fillRanges': 'Fill Ranges',
         'smartFill': 'Smart Fill',
         'minWearPlaceholder': 'Min wear values, e.g.: 0.00, 0.10, 0.20...',
-        'maxWearPlaceholder': 'Max wear values, e.g.: 0.50, 0.60, 0.70...'
+        'maxWearPlaceholder': 'Max wear values, e.g.: 0.50, 0.60, 0.70...',
+         'targetWear': 'Target Product Wear',
+        'remainingCalculation': 'Remaining Materials Calculation',
     }
 };
 
