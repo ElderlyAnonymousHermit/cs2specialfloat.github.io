@@ -17,8 +17,15 @@ function openTab(tabName) {
     });
     document.getElementById(tabName).style.display = 'block';
     event.currentTarget.style.backgroundColor = '#2563eb';
+    
+    // 初始化对应的功能
+    if (tabName === 'tenComboDiv' && !tenComboCalculator) {
+        setTimeout(initTenComboCalculator, 100);
+    }
+    if (tabName === 'ieee754ConverterDiv') {
+        setTimeout(initIEEE754Converter, 100);
+    }
 }
-
 // 更新组合UI
 function updateCombinationUI() {
     const combinationCount = parseInt(document.getElementById('combinationCount').value);

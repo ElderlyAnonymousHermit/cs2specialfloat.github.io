@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Float Creator V3.33 - 材料组合计算器</title>
+    <title>Float Combination V3.36 - CS2特殊磨损计算器</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles_10.css">
-     <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="styles_ten.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ioc">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 </head>
+
 <body>
     <main class="project-main">
         <div id="app-container">
             <div class="tab">
                 <div class="tab-left">
-                    <button class="tablinks active" onclick="openTab('floatCombosDiv')" style="background-color: #2563eb;">
+                    <button class="tablinks active" onclick="openTab('floatCombosDiv')"
+                        style="background-color: #2563eb;">
                         🎯 <span data-i18n="mainTab">特殊磨损材料组合生成器</span>
                     </button>
                     <button class="tablinks" onclick="openTab('tenComboDiv')">
                         🔢 10合计算器
+                    </button>
+                    <!-- 新增IEEE754转换器标签 -->
+                    <button class="tablinks" onclick="openTab('ieee754ConverterDiv')">
+                        🔄 IEEE754转换器
                     </button>
                 </div>
                 <div class="tab-right">
@@ -30,26 +37,34 @@
 
             <!-- 特殊磨损材料组合生成器 -->
             <div id="floatCombosDiv" class="tabcontent" style="display: block;">
-                <div class="width100">  
+                <div class="width100">
                     <div class="centerFlex">
+                        <div style="font-size: 88px;">广告位</div><div style="margin-right: 218px;"></div>
                         <h1 style="color: #60a5fa; margin-bottom: 20px;">
                             🎮 <span data-i18n="title">CSGO 材料组合计算器（测试版）</span><br>
-                            <a style="color: #006bf7; margin-bottom: 20px;font-size: 16px;" href="https://www.douyin.com/user/MS4wLjABAAAALbMbVJqHi7miSBkMlThTAPuJiqYGuVTGR7FXLXi7lyCOWJZMGmT5nvtxKsyP1fso?previous_page=app_code_link"">抖音：炮车本车</a>
-                          &nbsp&nbsp  <a style="font-size: 16px; color: #c42e35;" href="https://item.taobao.com/item.htm?abbucket=3&id=745853484899&mi_id=00002Z4vAnwFgG6aHCrJrvAUa26URjCcYEvp9f9U94jyNEU&ns=1&priceTId=2147886d17615595272208719e1084&skuId=5147328373473&spm=a21n57.1.hoverItem.2&utparam=%7B%22aplus_abtest%22%3A%22cbab26a0f77a16d66cbd4e0d7bc0c9d0%22%7D&xxc=taobaoSearch">淘宝：炮车电玩小店 </a>   
-                           &nbsp &nbsp&nbsp<a   style="color: #f02189d8; margin-bottom: 20px;font-size: 16px;" href="https://space.bilibili.com/668987788?spm_id_from=333.1007.0.0">b站：炮车本车</a>
+                            <a style="color: #006bf7; margin-bottom: 20px;font-size: 16px;"
+                                href="https://www.douyin.com/user/MS4wLjABAAAALbMbVJqHi7miSBkMlThTAPuJiqYGuVTGR7FXLXi7lyCOWJZMGmT5nvtxKsyP1fso?previous_page=app_code_link"">抖音：炮车本车</a>
+                          &nbsp&nbsp  <a style=" font-size: 16px; color: #c42e35;"
+                                href="https://item.taobao.com/item.htm?abbucket=3&id=745853484899&mi_id=00002Z4vAnwFgG6aHCrJrvAUa26URjCcYEvp9f9U94jyNEU&ns=1&priceTId=2147886d17615595272208719e1084&skuId=5147328373473&spm=a21n57.1.hoverItem.2&utparam=%7B%22aplus_abtest%22%3A%22cbab26a0f77a16d66cbd4e0d7bc0c9d0%22%7D&xxc=taobaoSearch">淘宝：炮车电玩小店
+                            </a>
+                            &nbsp &nbsp&nbsp<a style="color: #f02189d8; margin-bottom: 20px;font-size: 16px;"
+                                href="https://space.bilibili.com/668987788?spm_id_from=333.1007.0.0">b站：炮车本车</a>
                         </h1>
+                      <div style="margin-left: 218px;"></div>   <div style="font-size: 88px;">广告位</div>
                     </div>
                     <span style="color: #60a5fa; margin-bottom: 20px;"> 联系qq群：1604995891</span>
                 </div>
-                
+
                 <div class="fc-global-controls">
                     <div class="control-group">
                         <label data-i18n="materialsPerGroup">每组材料数量:</label>
-                        <input type="number" id="globalInputCount" min="1" max="30" value="15" onchange="updateAllMaterialGroups()">
+                        <input type="number" id="globalInputCount" min="1" max="30" value="15"
+                            onchange="updateAllMaterialGroups()">
                         <button onclick="addMaterialGroup()">➕ <span data-i18n="addGroup">添加材料组</span></button>
-                        <button onclick="calculateAllPercentages()" class="btn-calculate">📊 <span data-i18n="calculateAll">计算所有百分比</span></button>
+                        <button onclick="calculateAllPercentages()" class="btn-calculate">📊 <span
+                                data-i18n="calculateAll">计算所有百分比</span></button>
                     </div>
-                    
+
                     <div class="combination-controls">
                         <div class="control-row">
                             <div class="control-item">
@@ -61,17 +76,20 @@
                             </div>
                             <div class="control-item">
                                 <label>📏 <span data-i18n="productMinWear">产物最小磨损:</span></label>
-                                <input type="number" id="productMinWear" min="0" max="1" step="0.0000000001" value="0.0000000000">
+                                <input type="number" id="productMinWear" min="0" max="1" step="0.0000000001"
+                                    value="0.0000000000">
                             </div>
                             <div class="control-item">
                                 <label>📏 <span data-i18n="productMaxWear">产物最大磨损:</span></label>
-                                <input type="number" id="productMaxWear" min="0" max="1" step="0.0000000001" value="1.0000000000">
+                                <input type="number" id="productMaxWear" min="0" max="1" step="0.0000000001"
+                                    value="1.0000000000">
                             </div>
                         </div>
                         <div class="control-row">
                             <div class="control-item">
                                 <label>🎯 <span data-i18n="targetProductWear">期望产物磨损:</span></label>
-                                <input type="number" id="targetProductWear" min="0" max="1" step="0.0000000001" value="0.5000000000" onchange="calculateRequiredPercentage()">
+                                <input type="number" id="targetProductWear" min="0" max="1" step="0.0000000001"
+                                    value="0.5000000000" onchange="calculateRequiredPercentage()">
                             </div>
                             <div class="control-item">
                                 <label>🔍 <span data-i18n="significantDigits">有效位数:</span></label>
@@ -79,8 +97,10 @@
                                 <span class="hint">(<span data-i18n="decimalPlaces">小数点后位数</span>)</span>
                             </div>
                             <div class="control-item">
-                                <button onclick="findCombinations()" class="btn-search">🚀 <span data-i18n="startSearch">开始搜索组合</span></button>
-                                <button onclick="stopSearch()" class="btn-stop">⏹️ <span data-i18n="stopSearch">停止搜索</span></button>
+                                <button onclick="findCombinations()" class="btn-search">🚀 <span
+                                        data-i18n="startSearch">开始搜索组合</span></button>
+                                <button onclick="stopSearch()" class="btn-stop">⏹️ <span
+                                        data-i18n="stopSearch">停止搜索</span></button>
                             </div>
                         </div>
                     </div>
@@ -99,22 +119,25 @@
                                 <label data-i18n="percentageDifference">百分比差距:</label>
                                 <span id="percentageDifferenceValue">0.0000</span>
                             </div>
-                            <button onclick="checkPercentageMatch()" class="btn-check">📊 <span data-i18n="checkMatch">检查匹配度</span></button>
+                            <button onclick="checkPercentageMatch()" class="btn-check">📊 <span
+                                    data-i18n="checkMatch">检查材料平均磨损</span></button>
                         </div>
                         <div class="percentage-suggestion" id="percentageSuggestion">
-                            <span data-i18n="suggestionHint">点击"检查匹配度"查看建议</span>
+                            <span data-i18n="suggestionHint">材料添加完成后，点击"检查材料平均磨损"查看建议</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="fcMoreFloatsDiv" class="material-groups-container"></div>
-                
+
                 <div id="searchResults" class="search-results-container" style="display: none;">
                     <div class="results-header">
                         <h3>🎯 <span data-i18n="foundCombinations">找到的组合结果</span></h3>
                         <div class="results-info">
-                            <span id="resultsCount" style="color: #90caf9; font-weight: bold;" data-i18n="foundCount">已找到 0 个组合</span>
-                            <button onclick="clearResults()" class="btn-clear">🗑️ <span data-i18n="clearResults">清空结果</span></button>
+                            <span id="resultsCount" style="color: #90caf9; font-weight: bold;"
+                                data-i18n="foundCount">已找到 0 个组合</span>
+                            <button onclick="clearResults()" class="btn-clear">🗑️ <span
+                                    data-i18n="clearResults">清空结果</span></button>
                         </div>
                     </div>
                     <div id="resultsList" class="results-list"></div>
@@ -130,48 +153,55 @@
                         </h1>
                     </div>
                 </div>
-                
+
                 <div class="ten-combo-container">
                     <!-- 左侧：材料输入区域 -->
                     <div class="combo-inputs-section">
                         <h3 data-i18n="inputMaterials">📥 输入材料磨损</h3>
-                        
+
                         <!-- 一键填充区域 -->
                         <div class="bulk-fill-section">
                             <div class="bulk-fill-controls">
                                 <span class="bulk-fill-label" data-i18n="bulkFill">一键填充:</span>
-                                <input type="text" class="bulk-fill-input" id="tenBulkFillInput" 
-                                       placeholder="输入逗号分隔的磨损值，如: 0.12, 0.34, 0.56...">
+                                <input type="text" class="bulk-fill-input" id="tenBulkFillInput"
+                                    placeholder="输入逗号分隔的磨损值，如: 0.12, 0.34, 0.56...">
                                 <button class="bulk-fill-btn" onclick="bulkFillTenMaterials()">
                                     🚀 <span data-i18n="fillMaterials">填充材料</span>
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div class="material-inputs-grid-ten" id="tenMaterialInputs">
                             <!-- 10个材料输入框将通过JS动态生成 -->
                         </div>
                     </div>
-                    
+
                     <!-- 右侧：控制区域 -->
                     <div class="combo-controls-section">
                         <div class="product-wear-controls">
                             <h3 data-i18n="productSettings">🎯 产物设置</h3>
-                            
+
                             <div class="product-control-item">
                                 <label data-i18n="productMin">最小磨损:</label>
-                                <input type="number" id="tenProductMinWear" min="0" max="1" step="0.0000001" value="0.0000000" class="product-short-input">
+                                <input type="number" id="tenProductMinWear" min="0" max="1" step="0.0000001"
+                                    value="0.0000000" class="product-short-input">
                             </div>
-                            
+
                             <div class="product-control-item">
                                 <label data-i18n="productMax">最大磨损:</label>
-                                <input type="number" id="tenProductMaxWear" min="0" max="1" step="0.0000001" value="1.0000000" class="product-short-input">
+                                <input type="number" id="tenProductMaxWear" min="0" max="1" step="0.0000001"
+                                    value="1.0000000" class="product-short-input">
                             </div>
-                            
+                            <div class="product-control-item">
+                                <label data-i18n="targetWear">🎯 目标产物磨损:</label>
+                                <input type="number" id="tenTargetWear" min="0" max="1" step="0.0000001"
+                                    value="0.5000000" class="product-short-input"
+                                    onchange="calculateRemainingMaterials()">
+                            </div>
                             <button class="btn-calculate-ten" onclick="calculateTenCombo()">
                                 🧮 <span data-i18n="calculateProduct">计算产物磨损</span>
                             </button>
-                            
+
                             <div class="result-section" id="tenResultSection" style="display: none;">
                                 <h4 data-i18n="calculationResults">📊 计算结果</h4>
                                 <div class="result-output" id="tenResultOutput"></div>
@@ -181,15 +211,76 @@
                     </div>
                 </div>
             </div>
+            <!-- 转换器 -->
+            <div id="ieee754ConverterDiv" class="tabcontent">
+                <div class="width100">
+                    <div class="centerFlex">
+                        <h1 style="color: #60a5fa; margin-bottom: 20px;">
+                            🔄 IEEE754 单精度浮点数转换器
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="converter-container">
+                    <div class="converter-section">
+                        <h3>📥 输入数字</h3>
+                        <div class="input-group">
+                            <input type="text" id="ieee754Input" placeholder="输入十进制数字，如: 0.1, 3.14, 0.123456789"
+                                class="converter-input" oninput="convertIEEE754()">
+                            <button onclick="clearConverter()" class="btn-clear-converter">🗑️ 清空</button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="results-section" id="ieee754Results" style="display: none;">
+                        <h3>📊 转换结果</h3>
+
+                        
+                            <div class="result-item">
+                                <label>原始输入:</label>
+                                <span id="originalValue" class="result-value">-</span>
+                            </div>
+                            
+                            
+                           
+                          
+                       
+
+                        <div class="result-item">
+                                <label>IEEE754 单精度:</label>
+                                <span id="ieee754Value" class="result-value highlight">-</span>
+                            </div>
+
+
+                    </div>
+
+                    <div class="info-section">
+                        <h4>💡 IEEE754 单精度浮点数说明</h4>
+                        <div class="info-content">
+                            <p>• <strong>单精度浮点数</strong>: 32位存储 (1位符号 + 8位指数 + 23位尾数)</p>
+                            <p>• <strong>精度</strong>: 约6-9位有效数字</p>
+                            <p>• <strong>范围</strong>: ±1.2×10⁻³⁸ 到 ±3.4×10³⁸</p>
+                            <p>• CS2磨损计算使用IEEE754单精度浮点数，了解精度损失很重要</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
-        <div class="usage-history-toggle" onclick="toggleUsageHistory()">📋 <span data-i18n="usageHistory">使用记录</span></div>
+        <div class="usage-history-toggle" onclick="toggleUsageHistory()">📋 <span data-i18n="usageHistory">使用记录</span>
+        </div>
         <div class="usage-history" id="usageHistory">
             <div class="usage-history-header">
                 <span class="usage-history-title">📋 <span data-i18n="usageHistory">组合使用记录</span></span>
                 <button class="usage-history-clear" onclick="clearUsageHistory()" data-i18n="clear">清空</button>
             </div>
-            <div id="usageHistoryList"><div class="usage-history-item" data-i18n="noHistory">暂无使用记录</div></div>
+            <div id="usageHistoryList">
+                <div class="usage-history-item" data-i18n="noHistory">暂无使用记录</div>
+            </div>
         </div>
     </main>
 
@@ -202,8 +293,5 @@
     <script src="modules/tenComboCalculator.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
-
-
-
-
