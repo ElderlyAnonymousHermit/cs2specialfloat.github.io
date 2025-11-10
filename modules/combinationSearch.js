@@ -332,7 +332,7 @@ function addResultToUI(result) {
         </div>
         <div class="result-actions">
             <button class="btn-use" onclick="useCombination(${resultId}); event.stopPropagation();">
-                ✅ 使用此组合
+                ✅ 使用此组合（清除已用材料并新增到使用记录）
             </button>
         </div>
     `;

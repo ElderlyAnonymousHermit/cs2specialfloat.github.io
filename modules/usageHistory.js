@@ -32,25 +32,25 @@ function loadUsageHistory() {
 function addUsageHistory(result) {
     const timestamp = new Date().toLocaleString();
     
-    // 修改：显示原始磨损值而不是百分比
-    const materialsStr = result.materials.map(m => 
-        `${m.wearValue.toFixed(10)} (${m.groupId}-${m.inputIndex + 1})`
-    ).join(', ');
-    
-    const truncatedMaterials = materialsStr;
+    // 移除截断，完整显示材料信息
+    const materialsStr = result.materials.map(m => {
+        const group = document.getElementById(`materialGroup_${m.groupId}`);
+        let groupName = `组${m.groupId}`;
+        if (group) {
+            const titleInput = group.querySelector('.group-title-input');
+            if (titleInput && titleInput.value.trim()) {
+                groupName = titleInput.value.trim();
+            }
+        }
+        return `${m.wearValue.toFixed(10)} (${groupName}-${m.inputIndex + 1})`;
+    }).join(' + ');
     
     const historyItem = {
         timestamp: timestamp,
-        productWear: getIEEE754(result.productWear),
-        averagePercent: getIEEE754(result.averagePercent),
+        productWear: IEEE754Float32.formatPrecise(result.productWear),
+        averagePercent: IEEE754Float32.formatPrecise(result.averagePercent),
         materialCount: result.materials.length,
-        materials: truncatedMaterials,
-        // 新增：存储完整的材料信息用于详细显示
-        fullMaterials: result.materials.map(m => ({
-            wearValue: m.wearValue,
-            groupId: m.groupId,
-            inputIndex: m.inputIndex
-        }))
+        materials: materialsStr // 完整字符串，不截断
     };
     
     usageHistory.unshift(historyItem);
@@ -76,14 +76,14 @@ function updateUsageHistoryDisplay() {
     usageHistory.forEach((item, index) => {
         const historyItem = document.createElement('div');
         historyItem.className = 'usage-history-item';
+        
+        // 完整显示材料信息，不截断
         historyItem.innerHTML = `
             <div><strong>${item.timestamp}</strong></div>
-            <div>产物磨损: ${item.productWear} | 平均百分比: ${item.averagePercent}</div>
-            <div>材料: ${item.materials}</div>
+            <div>🎯 产物磨损: ${item.productWear} | 平均百分比: ${item.averagePercent}</div>
+            <div>📦 材料组合: ${item.materials}</div>
         `;
         
-        // 添加点击查看详情功能
-        historyItem.onclick = () => showHistoryDetails(item);
         historyList.appendChild(historyItem);
     });
 }
