@@ -938,15 +938,17 @@ body {
 .usage-history-item {
     padding: 12px;
     margin-bottom: 10px;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255,255,255,0.15);
     cursor: pointer;
     transition: all 0.3s ease;
-    word-wrap: break-word; /* 允许长单词换行 */
-    overflow-wrap: break-word; /* 现代浏览器的换行 */
-    white-space: normal; /* 允许正常换行 */
-    line-height: 1.4; /* 增加行高提高可读性 */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    line-height: 1.4;
+    max-height: none; /* 移除高度限制 */
+    overflow: visible; /* 移除溢出隐藏 */
 }
 
 .usage-history-item:hover {
@@ -983,12 +985,11 @@ body {
 .usage-history-item > div:nth-child(3) {
     color: #90caf9;
     font-size: 12px;
-    max-height: 60px; /* 限制材料显示高度 */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* 最多显示3行 */
-    -webkit-box-orient: vertical;
+    max-height: none; /* 移除高度限制 */
+    overflow: visible; /* 移除溢出隐藏 */
+    display: -webkit-box; /* 移除行数限制 */
+    -webkit-line-clamp: unset; /* 移除行数限制 */
+    -webkit-box-orient: unset; /* 移除行数限制 */
 }
 
 /* 响应式设计 */
