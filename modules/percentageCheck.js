@@ -96,7 +96,7 @@ function getAllAvailablePercentages() {
         materialInputs.forEach((input, inputIndex) => {
             const wearValue = getIEEE754(parseFloat(input.value));
             if (wearValue > 0 && !isNaN(wearValue) && wearValue >= minWear && wearValue <= maxWear) {
-                const numerator = getIEEE754(wearValue,-minWear);
+                const numerator = getIEEE754(wearValue-minWear);
                 const percentage = getIEEE754(numerator/range);
                 
                 allPercentages.push({
@@ -111,4 +111,5 @@ function getAllAvailablePercentages() {
     });
     
     return allPercentages;
+
 }
