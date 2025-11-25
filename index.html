@@ -7,8 +7,10 @@
     <title>Float Combination V3.36 - CS2特殊磨损计算器</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="styles_ten.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ioc">
+     <link rel="stylesheet" href="styles_find.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
 </head>
 
 <body>
@@ -27,6 +29,9 @@
                     <button class="tablinks" onclick="openTab('ieee754ConverterDiv')">
                         🔄 IEEE754转换器
                     </button>
+                    <button class="tablinks" onclick="openTab('materialRangeFinderDiv')">
+    🔍 材料区间查找
+</button>
                 </div>
                 <div class="tab-right">
                     <button class="language-switcher" onclick="toggleLanguage()">
@@ -211,6 +216,149 @@
                     </div>
                 </div>
             </div>
+
+ <!-- 区间查找 -->
+<div id="materialRangeFinderDiv" class="tabcontent">
+    <div class="width100">
+        <div class="centerFlex">
+            <h1 style="color: #60a5fa; margin-bottom: 20px;">
+                🔍 <span>材料区间查找器</span>
+            </h1>
+        </div>
+    </div>
+
+    <div class="material-finder-container">
+        <!-- 搜索方式选择 -->
+        <div class="finder-header">
+            <div class="method-selector">
+                <div class="method-tabs">
+                    <button class="method-tab active" onclick="switchFinderMethod('filter')" id="filterMethodTab">
+                        <i class="tab-icon">🎛️</i>
+                        <span>筛选器查找</span>
+                    </button>
+                    <button class="method-tab" onclick="switchFinderMethod('search')" id="searchMethodTab">
+                        <i class="tab-icon">🔍</i>
+                        <span>直接搜索</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 筛选器方式 -->
+        <div class="finder-content" id="filterSection">
+            <div class="filter-card">
+                <div class="card-header">
+                    <h3>🎯 选择目标皮肤</h3>
+                    <p>通过收藏品和品质筛选找到您想要的皮肤</p>
+                </div>
+                
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="icon">📚</i>
+                            收藏品
+                        </label>
+                        <select id="collectionSelect" class="modern-select" onchange="onCollectionChange()">
+                            <option value="">选择收藏品...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="icon">⭐</i>
+                            品质等级
+                        </label>
+                        <select id="qualitySelect" class="modern-select" onchange="onQualityChange()">
+                            <option value="">选择品质...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">
+                            <i class="icon">🎨</i>
+                            皮肤选择
+                        </label>
+                        <select id="skinSelect" class="modern-select">
+                            <option value="">请先选择收藏品和品质...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn-primary" onclick="findMaterialByFilter()">
+                        <i class="btn-icon">🚀</i>
+                        查找下级材料
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索方式 -->
+        <div class="finder-content" id="searchSection" style="display: none;">
+            <div class="search-card">
+                <div class="card-header">
+                    <h3>🔍 搜索皮肤</h3>
+                    <p>输入皮肤名称进行搜索，支持中文和英文名称</p>
+                </div>
+                
+                <div class="search-group">
+                    <div class="search-input-container">
+                        <i class="search-icon">🔍</i>
+                        <input type="text" id="skinSearchInput" placeholder="输入皮肤名称，如：火神、渐变之色、Vulcan..." 
+                               class="search-input" oninput="onSkinSearchInput()">
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                </div>
+                
+                <div class="search-actions">
+                    <button class="btn-primary" onclick="findMaterialBySearch()">
+                        <i class="btn-icon">🚀</i>
+                        查找下级材料
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果显示 -->
+        <div class="results-section" id="finderResults" style="display: none;">
+            <div class="results-card">
+                <div class="results-header">
+                    <h3>📊 查找结果</h3>
+                    <div class="results-actions">
+                        <button class="btn-secondary" onclick="exportResults()">
+                            <i class="btn-icon">📥</i>
+                            导出结果
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="target-item-card">
+                    <div class="target-header">
+                        <div class="target-icon">🎯</div>
+                        <div class="target-info">
+                            <h4 id="targetSkinName">-</h4>
+                            <div class="target-meta">
+                                <span class="meta-item" id="targetCollection">-</span>
+                                <span class="meta-item" id="targetQuality">-</span>
+                                <span class="meta-item" id="targetWearRange">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="materials-section">
+                    <h4>📦 下级材料列表</h4>
+                    <div class="materials-grid" id="materialsGrid">
+                        <div class="empty-state">
+                            <i class="empty-icon">📭</i>
+                            <p>暂无下级材料数据</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
             <!-- 转换器 -->
             <div id="ieee754ConverterDiv" class="tabcontent">
                 <div class="width100">
@@ -291,6 +439,7 @@
     <script src="modules/usageHistory.js"></script>
     <script src="modules/percentageCheck.js"></script>
     <script src="modules/tenComboCalculator.js"></script>
+    <script src="modules/materialFinder.js"></script>
     <script src="main.js"></script>
 </body>
 
