@@ -35,7 +35,7 @@ function addUsageHistory(result) {
     // 移除截断，完整显示材料信息
     const materialsStr = result.materials.map(m => {
         const group = document.getElementById(`materialGroup_${m.groupId}`);
-        let groupName = `组${m.groupId}`;
+        let groupName = `组${m.groupId}`;   
         if (group) {
             const titleInput = group.querySelector('.group-title-input');
             if (titleInput && titleInput.value.trim()) {

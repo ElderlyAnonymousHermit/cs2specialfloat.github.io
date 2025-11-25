@@ -209,7 +209,7 @@ class TenComboCalculator {
         
         if (value < minWear || value > maxWear) {
             materialInput.style.borderColor = '#f44336';
-            materialInput.title = `磨损值必须在 ${minWear.toFixed(7)} - ${maxWear.toFixed(7)} 范围内`;
+            materialInput.title = `磨损值必须在 ${minWear.toFixed(10)} - ${maxWear.toFixed(10)} 范围内`;
         } else {
             materialInput.style.borderColor = '#555';
             materialInput.title = '';
@@ -372,7 +372,7 @@ class TenComboCalculator {
                 <div>磨损值: <strong style="color: #4caf50;">${IEEE754Float32.formatPrecise(lastMaterialRequiredWear)}</strong></div>
                 <div>百分比: <strong style="color: #ff9800;">${IEEE754Float32.formatPrecise(lastMaterialRequiredPercentage)}</strong></div>
                 <div style="font-size: 11px; color: #aaa; margin-top: 5px;">
-                    有效范围: ${lastMinWear.toFixed(7)} - ${lastMaxWear.toFixed(7)}
+                    有效范围: ${lastMinWear.toFixed(10)} - ${lastMaxWear.toFixed(10)}
                 </div>
                 <button onclick="fillLastMaterial(${lastEmptyIndex}, ${lastMaterialRequiredWear})" 
                         style="margin-top: 8px; padding: 6px 12px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer;">
@@ -465,7 +465,7 @@ class TenComboCalculator {
         );
         
         if (lastMaterialRequiredWear < lastMinWear || lastMaterialRequiredWear > lastMaxWear) {
-            alert(`计算结果 ${lastMaterialRequiredWear.toFixed(7)} 超出材料 ${lastMaterialIndex} 的磨损范围 [${lastMinWear.toFixed(7)}, ${lastMaxWear.toFixed(7)}]！`);
+            alert(`计算结果 ${lastMaterialRequiredWear.toFixed(10)} 超出材料 ${lastMaterialIndex} 的磨损范围 [${lastMinWear.toFixed(10)}, ${lastMaxWear.toFixed(10)}]！`);
             return;
         }
         
@@ -475,7 +475,7 @@ class TenComboCalculator {
         }
         
         const lastMaterialInput = document.getElementById(`tenMaterial_${lastMaterialIndex}`);
-        lastMaterialInput.value = lastMaterialRequiredWear.toFixed(7);
+        lastMaterialInput.value = lastMaterialRequiredWear.toFixed(10);
         
         this.showLastMaterialCalculationDetails(
             validMaterials,
@@ -488,7 +488,7 @@ class TenComboCalculator {
         
         this.calculateProductWearAndDisplay();
         
-        alert(`✅ 已自动填充材料 ${lastMaterialIndex} 的磨损值: ${lastMaterialRequiredWear.toFixed(7)}`);
+        alert(`✅ 已自动填充材料 ${lastMaterialIndex} 的磨损值: ${lastMaterialRequiredWear.toFixed(10)}`);
     }
     
     showLastMaterialCalculationDetails(validMaterials, totalPercentage, requiredTotalPercentage, 
@@ -499,7 +499,7 @@ class TenComboCalculator {
                 <div>前 ${validMaterials.length} 个材料总百分比: ${IEEE754Float32.formatPrecise(totalPercentage)}</div>
                 <div>目标总百分比: ${IEEE754Float32.formatPrecise(requiredTotalPercentage)} × ${this.materialCount} = ${IEEE754Float32.formatPrecise(IEEE754Float32.multiply(requiredTotalPercentage, this.materialCount))}</div>
                 <div>材料 ${lastMaterialIndex} 需要百分比: ${IEEE754Float32.formatPrecise(lastMaterialRequiredPercentage)}</div>
-                <div>材料 ${lastMaterialIndex} 需要磨损: ${lastMaterialRequiredWear.toFixed(7)}</div>
+                <div>材料 ${lastMaterialIndex} 需要磨损: ${lastMaterialRequiredWear.toFixed(10)}</div>
                 <div style="margin-top: 8px; color: #4caf50;">
                     ✅ 计算完成并自动填充！
                 </div>
@@ -557,7 +557,7 @@ class TenComboCalculator {
         let targetComparison = '';
         if (!isNaN(targetWear)) {
             const difference = Math.abs(IEEE754Float32.subtract(productWear, targetWear));
-            targetComparison = ` | 与目标差距: ${difference.toFixed(7)}`;
+            targetComparison = ` | 与目标差距: ${difference.toFixed(10)}`;
         }
         
         return {
@@ -598,7 +598,7 @@ class TenComboCalculator {
         result.materials.forEach((material, index) => {
             detailedHTML += `
                 <div class="detailed-item">
-                    <span>材料 ${material.index}: ${material.wearValue.toFixed(7)}</span>
+                    <span>材料 ${material.index}: ${material.wearValue.toFixed(10)}</span>
                     <span>百分比: ${IEEE754Float32.formatPrecise(material.percentage)}</span>
                 </div>
             `;
@@ -610,12 +610,12 @@ class TenComboCalculator {
                 <span><strong>平均: ${IEEE754Float32.formatPrecise(result.averagePercentage)}</strong></span>
             </div>
             <div class="detailed-item">
-                <span>产物范围: ${result.productMinWear.toFixed(7)} - ${result.productMaxWear.toFixed(7)}</span>
+                <span>产物范围: ${result.productMinWear.toFixed(10)} - ${result.productMaxWear.toFixed(10)}</span>
                 <span>范围大小: ${IEEE754Float32.formatPrecise(result.productRange)}</span>
             </div>
             <div class="detailed-item">
                 <span>最终计算:</span>
-                <span>${IEEE754Float32.formatPrecise(result.averagePercentage)} × ${IEEE754Float32.formatPrecise(result.productRange)} + ${result.productMinWear.toFixed(7)}</span>
+                <span>${IEEE754Float32.formatPrecise(result.averagePercentage)} × ${IEEE754Float32.formatPrecise(result.productRange)} + ${result.productMinWear.toFixed(10)}</span>
             </div>
         `;
         
@@ -658,7 +658,7 @@ function switchComboMode() {
 function fillLastMaterial(index, wearValue) {
     const materialInput = document.getElementById(`tenMaterial_${index}`);
     if (materialInput) {
-        materialInput.value = wearValue.toFixed(7);
+        materialInput.value = wearValue.toFixed(10);
         if (tenComboCalculator) {
             tenComboCalculator.calculateLastMaterial();
         }
